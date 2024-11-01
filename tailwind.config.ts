@@ -9,9 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        'primary-bg': "#F6F5EF",
+        primary: "#ff2759"
       },
+      container: {
+        center: true
+      },
+      fontFamily: {
+        Kanit: `"Kanit", sans-serif`,
+      }
     },
   },
   plugins: [],
