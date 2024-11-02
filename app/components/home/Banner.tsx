@@ -1,12 +1,11 @@
 "use client";
 import 'swiper/css';
-import React, { useState } from 'react';
 import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
-import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
+import { Fade } from 'react-awesome-reveal'; // Import the Fade animation
 
 export default function Banner() {
     const banners = [
@@ -27,15 +26,6 @@ export default function Banner() {
         },
     ];
 
-    // Animation variants for the text reveal
-    const textReveal = {
-        hidden: { opacity: 0, y: 40 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-    };
-
-    // State to track the active slide index
-    const [activeIndex, setActiveIndex] = useState(0);
-
     return (
         <Swiper
             modules={[Autoplay, EffectFade, Pagination]}
@@ -43,10 +33,9 @@ export default function Banner() {
                 dynamicBullets: true,
             }}
             autoplay={{
-                delay: 2000,
+                delay: 3000,  // Increased delay for smoother transition
                 disableOnInteraction: false,
             }}
-            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}  // Update active index on slide change
             className="mySwiper"
             effect={'fade'}
             loop={true}
@@ -57,27 +46,18 @@ export default function Banner() {
                         className="h-screen flex items-center"
                         style={{ backgroundImage: `url('${banner.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                     >
-                        <motion.div
-                            className="container flex flex-col text-white/95 space-y-4 px-4 lg:px-0"
-                            key={activeIndex}  // Re-render animation on slide change
-                            initial="hidden"
-                            animate="visible"
-                            variants={textReveal}
-                        >
-                            <motion.h2
-                                className="text-4xl lg:text-8xl font-extrabold max-w-4xl"
-                                variants={textReveal}
-                            >
-                                {banner.title}
-                            </motion.h2>
-                            <motion.p
-                                className="text-lg lg:text-xl max-w-2xl"
-                                variants={textReveal}
-                                transition={{ delay: 0.2 }}
-                            >
-                                {banner.description}
-                            </motion.p>
-                        </motion.div>
+                        <div className="container flex flex-col text-white/95 space-y-4 px-4 lg:px-0">
+                            <Fade direction='up' duration={500} delay={0}>
+                                <h2 className="text-4xl lg:text-8xl font-extrabold max-w-4xl">
+                                    {banner.title}
+                                </h2>
+                            </Fade>
+                            <Fade direction='up' duration={500} delay={350}>
+                                <p className="text-lg lg:text-xl max-w-2xl">
+                                    {banner.description}
+                                </p>
+                            </Fade>
+                        </div>
                     </div>
                 </SwiperSlide>
             ))}
