@@ -2,7 +2,7 @@ import React from 'react'
 
 function PageTitle() {
   return (
-    <div>PageTitle</div>
+    <div></div>
   )
 }
 
