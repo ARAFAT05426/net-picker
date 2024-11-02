@@ -65,7 +65,7 @@ export default function Banner() {
                             variants={textReveal}
                         >
                             <motion.h2
-                                className="text-4xl lg:text-8xl font-semibold max-w-4xl"
+                                className="text-4xl lg:text-8xl font-extrabold max-w-4xl"
                                 variants={textReveal}
                             >
                                 {banner.title}

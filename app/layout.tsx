@@ -1,11 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "./components/common/Navbar";
-import { Kanit } from "next/font/google";
+import { Quicksand } from "next/font/google";
 
-const kanit = Kanit({
+const quicksand = Quicksand({
   subsets: ['latin'],
-  weight: ["400", "600", "800", "900"]
+  weight: ["400", "600", "700"]
 });
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${kanit.className} antialiased bg-primary-bg h-[500vh]`}
+        className={`${quicksand.className} antialiased bg-primary-bg h-[500vh]`}
       >
         <Navbar />
         {children}

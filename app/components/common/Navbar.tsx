@@ -61,13 +61,15 @@ function LargeNavbar({ pathname, isVisible, isScrolled }: LargeNavbarProps) {
                 </Link>
                 <div className="hidden lg:flex items-center gap-3.5">
                     {nav_links.map((nav_link, i) => (
-                        <Link key={i} href={nav_link.link} className={`text-lg ${pathname === nav_link.link ? 'font-semibold text-primary' : 'font-medium'}`}>
+                        <Link key={i} href={nav_link.link} className={`text-lg ${pathname === nav_link.link ? 'font-bold text-primary' : 'font-semibold'}`}>
                             {nav_link.title}
                         </Link>
                     ))}
                 </div>
                 <div className='flex items-center gap-1.5'>
-                    <CiUser size={25} />
+                    <Link href={'/login'}>
+                        <CiUser size={25} />
+                    </Link>
                     <CiHeart size={27} />
                     <CiShoppingBasket size={27} />
                 </div>
@@ -94,7 +96,9 @@ function SmallNavbar({ isVisible, isScrolled, isMenuOpen, onClose, pathname, onM
                 </button>
                 <Image className='mt-2.5' src="/201864594-removebg-preview (1) (1).png" alt="logo" height={100} width={200} />
                 <div className='flex items-center gap-1.5'>
-                    <CiUser size={25} />
+                    <Link href={'/login'}>
+                        <CiUser size={25} />
+                    </Link>
                     <CiHeart size={27} />
                     <CiShoppingBasket size={27} />
                 </div>
@@ -106,7 +110,7 @@ function SmallNavbar({ isVisible, isScrolled, isMenuOpen, onClose, pathname, onM
                 <Image className='mt-2.5' src="/201864594-removebg-preview (1) (1).png" alt="logo" height={100} width={200} />
                 <div className="mt-5 flex flex-col gap-2.5">
                     {nav_links.map((nav_link, i) => (
-                        <Link key={i} href={nav_link.link} className={`text-lg ${pathname === nav_link.link ? 'font-semibold text-primary' : 'font-medium'}`} onClick={onClose}>
+                        <Link key={i} href={nav_link.link} className={`text-lg ${pathname === nav_link.link ? 'font-bold text-primary' : 'font-semibold'}`} onClick={onClose}>
                             {nav_link.title}
                         </Link>
                     ))}

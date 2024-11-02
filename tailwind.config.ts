@@ -16,7 +16,7 @@ const config: Config = {
         center: true
       },
       fontFamily: {
-        Kanit: `"Kanit", sans-serif`,
+        Kanit: `"Quicksand", sans-serif`,
       }
     },
   },
