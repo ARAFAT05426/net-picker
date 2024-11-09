@@ -5,8 +5,8 @@ import Footer from "../components/footer/Footer";
 const AppLayout = () => {
     return (<>
         <Header />
-        <main className="h-[750vh]">
-        <Outlet />
+        <main className="">
+            <Outlet />
         </main>
         <Footer />
     </>);

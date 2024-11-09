@@ -1,10 +1,9 @@
 import type { FC } from 'react';
-import LinkBtn from '../btns/LinkBtn';
-import { GoPlus } from 'react-icons/go';
+import { GoArrowUpRight, GoPlus } from 'react-icons/go';
 import { LuHeart } from 'react-icons/lu';
 import { CiRoute } from 'react-icons/ci';
 import product_props from '../../types/product_props';
-import { AiOutlineCodeSandbox } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 interface Props {
     product: product_props;
@@ -12,24 +11,14 @@ interface Props {
 }
 
 const Product: FC<Props> = ({ className = "", product }) => {
-    const { title, images, price, stock, brand } = product;
+    const { title, images, price, brand } = product;
+    console.log(product)
 
     return (
-        <div className={`${className} relative group flex flex-col p-4 sm:p-5 rounded border h-[25rem] md:h-[27.5rem] lg:h-[30rem] hover:shadow-md transition-all duration-300`}>
-            {/* Brand label */}
-            <span className="flex items-center gap-1 text-xs font-semibold opacity-75 mb-2">
-                <span className="h-[1.25px] w-5 bg-accent" /> {brand}
-            </span>
-
-            {/* Title with flexible height */}
-            <h1 className="text-lg sm:text-xl md:text-2xl tracking-wider text-primary font-semibold flex-grow line-clamp-2 mb-2">
-                {title}
-            </h1>
-
+        <div className={`${className} relative group flex flex-col rounded transition-all duration-300`} style={{ height: '100%' }}>
             {/* Image container with fixed height */}
-            <div className="relative flex-shrink-0 max-h-40 md:max-h-48 overflow-hidden my-2 transition-transform duration-300 transform group-hover:scale-110">
-                <img className="h-full w-full object-contain" src={images[0]} alt={title} />
-                
+            <div className="relative h-48 md:h-56 lg:h-60 overflow-hidden mb-2.5">
+                <img className="min-h-full h-48 md:h-56 lg:h-60 w-full bg-[#EEEEEE] object-contain group-hover:scale-110 transition-all duration-300" src={images[0]} alt={title} />
                 {/* Options buttons with staggered reveal */}
                 <div className="absolute inset-x-0 bottom-3 flex items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <button className="option-button px-3 py-2 bg-primary text-white rounded-sm transform -translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-75">
@@ -43,21 +32,25 @@ const Product: FC<Props> = ({ className = "", product }) => {
                     </button>
                 </div>
             </div>
+            {/* Brand label */}
+            <span className="flex items-center gap-1 text-xs font-semibold opacity-75 mb-2">
+                <span className="h-[1.25px] w-5 bg-accent" /> {brand}
+            </span>
 
+            {/* Title with flexible height */}
+            <h1 className="sm:text-lg md:text-xl tracking-wider text-primary font-semibold mb-2">
+                {title.slice(0, 20)}
+            </h1>
             {/* Divider */}
-            <hr className="mx-2.5 my-2" />
-
+            <hr className="my-1.5" />
             {/* Price and stock */}
-            <div className="flex items-center justify-between text-lg md:text-xl tracking-widest font-semibold py-1 px-3.5">
-                <p>${price}</p>
-                <p className="flex items-center gap-0.5"><AiOutlineCodeSandbox /> {stock}</p>
-            </div>
-
-            {/* Link Button */}
-            <div className="mt-auto">
-                <LinkBtn to={`/${title}`} className="block w-full text-center bg-primary text-white font-semibold py-2 rounded hover:bg-opacity-90 transition duration-300">
+            <div className="flex items-center justify-between text-sm md:text-lg tracking-widest font-semibold py-1 px-0.5">
+                <p className='flex items-center gap-x-1.5'><span className='text-xs'>From</span> ${price}</p>
+                {/* <p className="flex items-center gap-0.5"><AiOutlineCodeSandbox /> {stock}</p> */}
+                <Link to={`/${title}`} className='text-sm text-center tracking-widest font-semibold underline flex items-center gap-x-1.5'>
                     View Offer
-                </LinkBtn>
+                    <GoArrowUpRight />
+                </Link>
             </div>
         </div>
     );

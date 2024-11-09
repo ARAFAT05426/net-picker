@@ -34,16 +34,16 @@ const DealsOfDay = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <section className="bg-[#F4F2E6] space-y-3.5 py-20">
+        <section className="bg-[#f4f2e688] space-y-3.5 py-14">
             <div className='container'>
                 <div className="flex items-center justify-between mb-4">
                     <h1 className=" text-2xl md:text-4xl font-semibold">Deals of the Day</h1>
                     <div className="flex items-center gap-x-1.5 z-10">
-                        <button className="swiper-button-prev bg-white hover:bg-primary hover:text-white p-1.5 rounded-sm border transition-all duration-300">
-                            <GoChevronLeft size={22.5} />
+                        <button className="swiper-button-prev bg-white hover:bg-primary hover:text-white px-2.5 py-1.5 rounded-sm border transition-all duration-300">
+                            <GoChevronLeft size={25} />
                         </button>
-                        <button className="swiper-button-next bg-white hover:bg-primary hover:text-white p-1.5 rounded-sm border transition-all duration-300">
-                            <GoChevronRight size={22.5} />
+                        <button className="swiper-button-next bg-white hover:bg-primary hover:text-white px-2.5 py-1.5 rounded-sm border transition-all duration-300">
+                            <GoChevronRight size={25} />
                         </button>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ const DealsOfDay = () => {
                 >
                     {data?.map((deals, i) => (
                         <SwiperSlide key={i} className="min-h-full h-full">
-                            <Product className='bg-white' product={deals} />
+                            <Product className='' product={deals} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

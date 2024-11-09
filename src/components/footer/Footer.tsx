@@ -1,3 +1,4 @@
+import Logo from '../logo/Logo';
 import { Link } from 'react-router-dom';
 import { FaPaperPlane } from 'react-icons/fa';
 import social_links from '../../statics/social_links';
@@ -9,9 +10,7 @@ const Footer = () => {
 
                 {/* Logo and About Section */}
                 <div className="space-y-3">
-                    <Link to="/">
-                        <img src="/images/logo.png" alt="Net Picker Logo" className="w-32" />
-                    </Link>
+                    <Logo />
                     <p className="max-w-xs text-sm">
                         Net Picker is your trusted platform for product comparison, offering transparent, AI-enhanced recommendations to help you make the best shopping choices.
                     </p>
