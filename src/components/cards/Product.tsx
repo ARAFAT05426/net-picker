@@ -1,20 +1,13 @@
 import type { FC } from 'react';
-import { AiOutlineCodeSandbox } from 'react-icons/ai';
-import { CiRoute } from 'react-icons/ci';
+import LinkBtn from '../btns/LinkBtn';
 import { GoPlus } from 'react-icons/go';
 import { LuHeart } from 'react-icons/lu';
-import LinkBtn from '../btns/LinkBtn';
-
-interface ProductProps {
-    title: string;
-    stock: number;
-    images: [string];
-    price: number;
-    brand?: string;
-}
+import { CiRoute } from 'react-icons/ci';
+import product_props from '../../types/product_props';
+import { AiOutlineCodeSandbox } from 'react-icons/ai';
 
 interface Props {
-    product: ProductProps;
+    product: product_props;
     className?: string;
 }
 
@@ -22,7 +15,7 @@ const Product: FC<Props> = ({ className = "", product }) => {
     const { title, images, price, stock, brand } = product;
 
     return (
-        <div className={`${className} relative group flex flex-col p-4 sm:p-5 rounded border h-[27.5rem] md:h-[30rem] lg:h-[32rem] hover:shadow-lg transition-all duration-300`}>
+        <div className={`${className} relative group flex flex-col p-4 sm:p-5 rounded border h-[25rem] md:h-[27.5rem] lg:h-[30rem] hover:shadow-md transition-all duration-300`}>
             {/* Brand label */}
             <span className="flex items-center gap-1 text-xs font-semibold opacity-75 mb-2">
                 <span className="h-[1.25px] w-5 bg-accent" /> {brand}
@@ -34,18 +27,18 @@ const Product: FC<Props> = ({ className = "", product }) => {
             </h1>
 
             {/* Image container with fixed height */}
-            <div className="relative flex-shrink-0 max-h-40 md:max-h-48 overflow-hidden my-2 transition-transform duration-300 transform group-hover:scale-105">
+            <div className="relative flex-shrink-0 max-h-40 md:max-h-48 overflow-hidden my-2 transition-transform duration-300 transform group-hover:scale-110">
                 <img className="h-full w-full object-contain" src={images[0]} alt={title} />
                 
                 {/* Options buttons with staggered reveal */}
                 <div className="absolute inset-x-0 bottom-3 flex items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="option-button px-3 py-2 bg-primary text-white rounded transform -translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-75">
+                    <button className="option-button px-3 py-2 bg-primary text-white rounded-sm transform -translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-75">
                         <LuHeart size={22} />
                     </button>
-                    <button className="option-button bg-white flex items-center gap-x-1.5 px-3 py-2 border rounded transform -translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[150ms]">
+                    <button className="option-button bg-white hover:bg-primary hover:text-white flex items-center gap-x-1.5 px-3 py-2 border rounded-sm transform -translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[150ms]">
                         <GoPlus size={22} /> <span className="text-sm font-semibold tracking-wider">Quick View</span>
                     </button>
-                    <button className="option-button bg-white px-3 py-2 border rounded transform -translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[225ms]">
+                    <button className="option-button bg-white hover:bg-primary hover:text-white px-3 py-2 border rounded-sm transform -translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[225ms]">
                         <CiRoute size={22} />
                     </button>
                 </div>

@@ -1,27 +1,27 @@
 import 'swiper/css';
 import Product from "../cards/Product";
-import { useEffect, useState } from "react";
-import { Navigation } from 'swiper/modules';
 import BarLoader from '../common/BarLoader';
+import { Navigation } from "swiper/modules";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import axios_common from "../../utils/axios_common";
+import product_props from "../../types/product_props";
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 
 const DealsOfDay = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<product_props[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [error, setError] = useState<string>("");
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axios_common.get(`?limit=8`);
                 setData(response?.data?.products);
-                setError(""); // Clear any previous errors
+                setError("");
             } catch (error) {
                 console.error("Error fetching data", error);
                 setError("Failed to fetch deals");
-                setData(null);
             } finally {
                 setLoading(false);
             }
