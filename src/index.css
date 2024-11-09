@@ -26,3 +26,7 @@
   background: #434445;
   border-radius: 1.25px;
 }
+
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
