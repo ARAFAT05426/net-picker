@@ -1,6 +1,12 @@
+import Banner from "../components/home_page/Banner";
+import DealsOfDay from "../components/home_page/DealsOfDay";
+import OurFeatures from "../components/home_page/OurFeatures";
+
 const Home = () => {
     return (<>
-    <h1>Home</h1>
+        <Banner />
+        <OurFeatures />
+        <DealsOfDay />
     </>);
 }
 export default Home;

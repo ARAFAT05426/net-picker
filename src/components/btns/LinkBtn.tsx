@@ -11,7 +11,7 @@ const LinkBtn: FC<LinkBtnProps> = ({ to, children, className }) => {
     return (
         <Link
             to={to}
-            className={`px-5 py-1.5 md:px-8 md:py-2.5 rounded-sm text-white tracking-wider font-semibold bg-primary hover:bg-primary-dark transition ${className}`}
+            className={`px-5 py-1.5 md:px-8 md:py-3 rounded-sm text-center text-white tracking-wider font-semibold bg-primary hover:bg-primary-dark transition ${className}`}
         >
             {children}
         </Link>

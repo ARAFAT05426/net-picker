@@ -9,6 +9,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif; 
+    font-family: 'Montserrat', sans-serif;
   }
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 7.5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.125);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #434445;
+  border-radius: 1.25px;
 }
