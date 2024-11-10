@@ -10,7 +10,7 @@ const ActionBtn: FC<ActionBtnProps> = ({ type = "button", onClick, children, cla
         <button
             type={type}
             onClick={onClick}
-            className={`px-4 py-2 rounded text-white bg-secondary hover:bg-secondary-dark transition ${className}`}
+            className={`w-full px-5 py-2 rounded text-white bg-secondary transition-all ${className}`}
             {...rest}
         >
             {children}

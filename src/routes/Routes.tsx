@@ -3,6 +3,9 @@ import AppLayout from "../layouts/AppLayout";
 import Home from "../pages/Home";
 import Blog from "../pages/Blog";
 import Contact from "../pages/Contact";
+import DashboardLayout from "../layouts/DashboardLayout";
+import SignUp from "../pages/SignUp";
+import LogIn from "../pages/LogIn";
 
 const routes = createBrowserRouter([
     {
@@ -22,6 +25,18 @@ const routes = createBrowserRouter([
                 element: <Contact />
             }
         ]
+    },
+    {
+        path: "/dashboard",
+        element: <DashboardLayout />
+    },
+    {
+        path: "/signup",
+        element: <SignUp />
+    },
+    {
+        path: "login",
+        element: <LogIn />
     }
 ])
 
