@@ -12,7 +12,7 @@ const InnerHeader = () => {
                 </LinkBtn>
             </div>
             <SearchBar />
-            <LinkBtn className="hidden md:block" to="/signup">
+            <LinkBtn className="hidden md:block" to="/dashboard">
                 Start Now
             </LinkBtn>
         </div>

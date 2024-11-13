@@ -8,27 +8,44 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      screens: {
-        'xs': '360px',
-        'sm': '480px',
-        'md': '640px',
-        'lg': '820px',
-        'xl': '1080px',
-        '2xl': '1280px',
-        '3xl': '1440px',
-        '4xl': '2160px',
-      },
       container: {
         center: true,
+        padding: '1.75rem',
+        screens: {
+          sm: '100%',
+          md: '100%',
+          lg: '1024px',
+          xl: '1280px',
+          '2xl': '1440px',
+        },
       },
       colors: {
-        primary: "#FB1919",
-        "primary-bg": "#F2F1F1",
+        primary: "#e7ab3c",
+        secondary: "#191919",
+        accent: "#434445",
+        background: "#f9fafb",
+        card: "#1e293b",
+        textPrimary: "#1f2937",
+        textSecondary: "#4b5563",
+        border: "#d1d5db"
       },
       fontFamily: {
-        josefin: ['josefin Sans', 'sans-serif'],
-        rancho: ['Rancho', 'cursive']
       },
+      fontSize: {
+        'xs': '.75rem',
+        'sm': '.875rem',
+        'base': '1rem',
+        'lg': '1.125rem',
+        'xl': '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem',
+      },
+      boxShadow: {
+        card: "0 4px 12px rgba(0, 0, 0, 0.1)",
+        button: "0 2px 4px rgba(0, 0, 0, 0.15)",
+      }
     },
   },
   plugins: [],

@@ -23,7 +23,6 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
     const [user, setUser] = useState<user_props | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-
     // Fetch user data (CSRF token, user data, etc.)
     const fetchUser = async () => {
         try {

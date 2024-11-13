@@ -9,7 +9,7 @@ import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 
 const Banner = () => {
     return (
-        <div className="relative mt-40">
+        <div className="relative">
             <Swiper
                 modules={[Autoplay, EffectFade, Navigation, Pagination]}
                 pagination={{

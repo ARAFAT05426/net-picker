@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import AppLayout from "../layouts/AppLayout";
 import ResetPassword from "../pages/ResetPassword";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Shop from "../pages/Shop";
 
 // Pages with Lazy Loading
 const Home = lazy(() => import("../pages/Home"));
@@ -27,6 +28,14 @@ const routes = createBrowserRouter([
                 element: (
                     <Suspense fallback={<Loading />}>
                         <Home />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/shop",
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <Shop />
                     </Suspense>
                 ),
             },

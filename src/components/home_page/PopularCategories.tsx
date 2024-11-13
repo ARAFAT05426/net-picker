@@ -1,85 +1,62 @@
-import { useEffect, useState } from "react";
+import { FC, useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import axios_common from "../../utils/axios_common";
 import Product from "../cards/Product";
 import BarLoader from "../common/BarLoader";
 import product_props from "../../types/product_props";
+import niche_categories from "../../statics/niche_categories";
 
-const PopularCategories = () => {
-    const [categories, setCategories] = useState<string[]>([]);
-    const [categoryLoading, setCategoryLoading] = useState<boolean>(true);
-    const [productLoading, setProductLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-    const [products, setProducts] = useState<product_props[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<string>("groceries");
+// Fetches products for the selected category
+const fetchCategoryProducts = async (category: string) => {
+    const response = await axios_common.get<{ products: product_props[] }>(`/products?category/${category}?limit=8`);
+    return response.data.products;
+};
 
-    // Fetches the list of categories
-    const fetchCategories = async () => {
-        setCategoryLoading(true);
-        try {
-            const response = await axios_common.get<string[]>('/category-list');
-            setCategories(response.data || []);
-            setError(null);
-        } catch (err) {
-            console.error("Error fetching categories:", err);
-            setError("Failed to fetch categories. Please try again.");
-        } finally {
-            setCategoryLoading(false);
-        }
-    };
+const PopularCategories: FC = () => {
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-    // Fetches products for the selected category
-    const fetchCategoryProducts = async (category: string) => {
-        setProductLoading(true);
-        try {
-            const response = await axios_common.get<{ products: product_props[] }>(`/category/${category}?limit=8`);
-            setProducts(response.data.products || []);
-            setError(null);
-        } catch (err) {
-            console.error("Error fetching products:", err);
-            setError("Failed to fetch products for this category. Please try again.");
-        } finally {
-            setProductLoading(false);
-        }
-    };
+    // Query to fetch products for the selected category
+    const { data: products, isLoading: productLoading, isError: productError, error: productErrorMsg, refetch } = useQuery({
+        queryKey: ["popular-categories", selectedCategory],
+        queryFn: () => fetchCategoryProducts(selectedCategory)
+    });
 
     // Handles the category button click
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
-        fetchCategoryProducts(category);
     };
 
+    // Optional: Refetch products when selectedCategory changes
     useEffect(() => {
-        fetchCategories();
-        fetchCategoryProducts(selectedCategory);
-    }, [selectedCategory]);
+        if (selectedCategory) {
+            refetch(); // Trigger refetch manually if needed after setting the category
+        }
+    }, [selectedCategory, refetch]);
 
     return (
         <section className="container py-14">
             <h2 className="text-2xl font-bold mb-5">Popular Categories</h2>
-
-            {categoryLoading ? (
-                <div className="text-center"><BarLoader /></div>
-            ) : error ? (
-                <div className="text-center text-red-500">{error}</div>
-            ) : (
-                <div className="flex items-center gap-x-3.5 mb-5">
-                    {categories.slice(0, 10).map((category, i) => (
-                        <button
-                            key={i}
-                            onClick={() => handleCategoryClick(category)}
-                            className={`uppercase text-sm tracking-widest font-semibold  rounded transition-all
-                                ${selectedCategory === category ? "underline" : ""}`}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
-            )}
+            <div className="flex items-center gap-x-3.5 mb-5">
+                {niche_categories?.slice(0, 5).map((niche_categorie, i) => (
+                    <button
+                        key={i}
+                        onClick={() => handleCategoryClick(niche_categorie.name)}
+                        className={`relative uppercase text-sm tracking-widest font-semibold rounded transition-all
+                                ${selectedCategory === niche_categorie.name ? "underline" : ""}`}
+                    >
+                        {niche_categorie.name}
+                    </button>
+                ))}
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
                 {productLoading ? (
                     <div className="col-span-full text-center"><BarLoader className="mx-auto" /></div>
-                ) : products.length > 0 ? (
+                ) : productError ? (
+                    <div className="col-span-full text-center text-red-500">
+                        {productErrorMsg instanceof Error ? productErrorMsg.message : 'Failed to fetch products for this category.'}
+                    </div>
+                ) : products?.length > 0 ? (
                     products.map((product, i) => (
                         <Product key={i} product={product} />
                     ))

@@ -1,60 +1,56 @@
-interface niche_categoriesProps {
+interface NicheCategoryProps {
     name: string;
     subcategories: string[];
 }
 
-const niche_categories: niche_categoriesProps[] = [
+const niche_categories: NicheCategoryProps[] = [
     {
-        name: "Electronics",
-        subcategories: ["Smartphones", "Computers", "Tablets", "Electronic Accessories"]
+        name: "Consumer Electronics",
+        subcategories: ["Smartphones", "Computers", "Tablets", "Accessories"]
     },
     {
-        name: "Home & Kitchen",
-        subcategories: ["Small Appliances", "Large Appliances", "Decor", "Furniture", "Kitchen Utensils"]
+        name: "Home ,Furniture & Living",
+        subcategories: ["Appliances", "Furniture", "Home Decor", "Kitchenware"]
     },
     {
-        name: "Health & Beauty",
-        subcategories: ["Skincare", "Makeup", "Wellness Products", "Health Equipment"]
+        name: "Beauty & Wellness",
+        subcategories: ["Skincare", "Makeup", "Health Products", "Wellness Devices"]
     },
     {
-        name: "Fashion & Accessories",
-        subcategories: ["Clothing", "Shoes", "Jewelry", "Fashion Accessories"]
+        name: "Apparel & Accessories",
+        subcategories: ["Clothing", "Footwear", "Jewelry", "Accessories"]
     },
     {
-        name: "DIY & Gardening",
-        subcategories: ["Tools", "Gardening Equipment", "Outdoor Furniture"]
+        name: "DIY ,Tool & Outdoors",
+        subcategories: ["Tools", "Garden Equipment", "Outdoor Furniture"]
     },
     {
-        name: "Baby & Kids",
-        subcategories: ["Toys", "Baby Clothing", "Childcare Products"]
+        name: "Children's Products",
+        subcategories: ["Toys", "Baby Apparel", "Childcare Essentials"]
     },
     {
-        name: "Auto-Moto",
-        subcategories: ["Auto Parts", "Motorcycle Accessories", "Car Care"]
+        name: "Automotive & Motorcycle",
+        subcategories: ["Car Parts", "Motorcycle Gear", "Vehicle Care"]
     },
     {
-        name: "Pet Supplies",
-        subcategories: ["Pet Food", "Accessories", "Animal Care"]
+        name: "Pet Care & Supplies",
+        subcategories: ["Pet Food", "Pet Accessories", "Animal Health"]
     },
     {
-        name: "Large Appliances",
-        subcategories: ["Refrigerators", "Washing Machines", "Dryers", "Ovens", "Dishwashers"]
+        name: "Major Appliances",
+        subcategories: ["Refrigerators", "Washers", "Dryers", "Ovens", "Dishwashers"]
     },
     {
-        name: "Digital Products & Training",
-        subcategories: ["E-books", "E-commerce Training", "WordPress Development", "Digital Marketing"]
+        name: "Digital Products",
+        subcategories: ["E-books", "E-commerce Training", "Web Development", "Marketing Courses"]
     },
     {
-        name: "Sports & Leisure",
-        subcategories: ["Sports Equipment", "Fitness Products", "Outdoor Activities"]
+        name: "Sports & Fitness Kits",
+        subcategories: ["Exercise Gear", "Sports Equipment", "Outdoor Recreation"]
     },
     {
-        name: "Mom & Gift Ideas",
-        subcategories: ["Gifts for Moms", "Baby Items", "General Gift Ideas"]
-    },
-    {
-        name: "Promotional Offers",
-        subcategories: ["Selection of Discounts"]
+        name: "Gift Cards & More",
+        subcategories: ["Gifts for Moms", "Baby Gifts", "General Gift Ideas"]
     }
 ];
 

@@ -8,7 +8,7 @@ const NavHeader = () => {
     const [isOpen, setOpen] = useState(false);
 
     return (
-        <nav className="bg-secondary text-white border-b border-b-accent">
+        <nav className="bg-secondary text-white">
             <div className="relative container mx-auto flex items-center justify-between">
                 {/* Left-aligned category box */}
                 <CategoryBox />

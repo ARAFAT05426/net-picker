@@ -2,36 +2,24 @@ import 'swiper/css';
 import Product from "../cards/Product";
 import BarLoader from '../common/BarLoader';
 import { Navigation } from "swiper/modules";
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import axios_common from "../../utils/axios_common";
-import product_props from "../../types/product_props";
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
+import { useQuery } from '@tanstack/react-query';
+import axios_common from '../../utils/axios_common';
+import product_props from "../../types/product_props";
 
 const DealsOfDay = () => {
-    const [data, setData] = useState<product_props[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string>("");
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await axios_common.get(`?limit=8`);
-                setData(response?.data?.products);
-                setError("");
-            } catch (error) {
-                console.error("Error fetching data", error);
-                setError("Failed to fetch deals");
-            } finally {
-                setLoading(false);
-            }
+    // Use useQuery to fetch data
+    const { data, isLoading, error } = useQuery<product_props[]>({
+        queryKey: ['deals_of_the_day'],
+        queryFn: async () => {
+            const response = await axios_common.get('/products');
+            return response.data.products; // return only products array
         }
+    });
 
-        fetchData();
-    }, []);
-
-    if (loading) return <BarLoader />;
-    if (error) return <div>Error: {error}</div>;
+    if (isLoading) return <BarLoader className='mx-auto' />;
+    if (error) return <div>Error: {(error as Error).message}</div>;
 
     return (
         <section className="bg-[#f4f2e688] space-y-3.5 py-14">

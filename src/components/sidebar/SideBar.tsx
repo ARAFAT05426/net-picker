@@ -1,6 +1,7 @@
 import { LuChevronFirst, LuChevronLast } from "react-icons/lu";
 import { useState, ReactNode, FC } from "react";
 import { FiMoreVertical } from "react-icons/fi";
+import Logo from "../logo/Logo";
 
 interface SidebarProps {
     children: (expanded: boolean) => ReactNode;
@@ -24,8 +25,12 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
                         {expanded ? <LuChevronFirst /> : <LuChevronLast />}
                     </button>
                 </div>
-
-                <ul className="flex-1 px-3.5 space-y-2.5 overflow-hidden">{children(expanded)}</ul>
+                <ul className="flex-1 px-3.5 space-y-2.5 overflow-hidden">
+                    <div className="mb-5">
+                    <Logo />
+                    </div>
+                    {children(expanded)}
+                </ul>
 
                 <div className="border-t flex p-3 items-center">
                     <img src="" alt="Profile" className="w-10 h-10 rounded-md" />

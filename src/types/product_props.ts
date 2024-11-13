@@ -1,7 +1,7 @@
 interface product_props {
-    title: string;
-    stock: number;
-    images: [string];
+    name: string;
+    rating: number;
+    image_url: string;
     price: number;
     brand?: string;
 }
