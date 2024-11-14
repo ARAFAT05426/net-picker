@@ -10,7 +10,7 @@ interface AuthenticationContextType {
     register: (name: string, email: string, password: string) => Promise<void>;
     logout: () => void;
     forgetPassword: (email: string) => Promise<void>;
-    resetPassword: (token: string, email: string | null, password: string) => Promise<void>; // Added resetPassword here
+    resetPassword: (token: string, email: string, password: string) => Promise<void>; // Added resetPassword here
 }
 
 const AuthenticationContext = createContext<AuthenticationContextType | undefined>(undefined);
@@ -44,6 +44,7 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
             await axios_common.get('/sanctum/csrf-cookie');  // CSRF Token
             const response = await axios_common.post('/login', { email, password });
             setUser(response.data.user);  // Update user after login
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             setError(err.response?.data?.message || 'Login failed');
         } finally {
@@ -59,6 +60,7 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
             const response = await axios_common.post('/register', { name, email, password });
             console.log(response)
             setUser(response.data.user);  // Update user after registration
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             console.log(err)
             setError(err.response?.data?.message || 'Registration failed');

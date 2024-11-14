@@ -23,10 +23,10 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
     };
 
     return (
-        <div className="w-full flex flex-col items-center space-y-3.5 mt-3.5">
+        <div className="w-full flex flex-col space-y-3.5 mt-3.5">
             <div className="flex items-center justify-between w-full text-sm tracking-widest font-semibold">
-                <span className='px-3.5 py-0.5 border rounded-sm'>{currencyText} {values[0]}</span>
-                <span className='px-3.5 py-0.5 border rounded-sm'>{currencyText} {values[1]}</span>
+                <input defaultValue={currencyText + values[0]} className='w-fit max-w-24 outline-none px-3.5 py-1 border rounded-sm'/>
+                <input defaultValue={currencyText + values[1]} className='w-fit max-w-24 px-3.5 py-1 outline-none border rounded-sm'/>
             </div>
             <div className='px-1.5 w-full'>
                 <Range
@@ -69,6 +69,9 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({
                     )}
                 />
             </div>
+            <button className='w-fit bg-primary text-white px-8 py-1.5 font-semibold text-sm tracking-widest'>
+                Apply
+            </button>
         </div>
     );
 };

@@ -1,8 +1,8 @@
-import { GoPlus } from "react-icons/go";
-import niche_categories from "../../statics/niche_categories";
 import { useState } from "react";
+import { GoPlus } from "react-icons/go";
 import PriceRangeSlider from "./PriceRangeSlider";
 import CustomDropdown from "../fields/CustomDropdown";
+import niche_categories from "../../statics/niche_categories";
 
 interface WidgetSectionProps {
   title: string;
@@ -21,35 +21,42 @@ const WidgetSection: React.FC<WidgetSectionProps> = ({ title = "", className = "
 );
 
 const FilterWidget: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [rangeValues, setRangeValues] = useState({ min: 10, max: 100 });
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null); // State for selected category
-
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const handleRangeChange = (values: { min: number; max: number }) => {
     setRangeValues(values);
   };
 
-  // Example static brand data (replace this with your own data source)
   const brands = ["Nike", "Adidas", "Puma", "Reebok", "Under Armour"];
-
-  // Example static popular tags data (replace this with your own data source)
   const popularTags = ["New", "Discount", "Sale", "Exclusive", "Limited Edition"];
 
-  const handleCategorySelect = (category: string) => {
+  const handleCategorySelect = (category: string | null) => {
     setSelectedCategory(category);
   };
 
   return (
-    <div className="max-w-64 space-y-3.5 mb-10">
+    <div className="max-w-full pr-5 space-y-5 border-r-none md:border-r mb-10 w-full sm:max-w-xs md:max-w-md lg:max-w-72 xl:max-w-80">
       {/* Category Section with Custom Dropdown */}
-      <WidgetSection title="Category">
-        <CustomDropdown
-          className="mt-3.5"
-          options={niche_categories.map((category) => category.name)} // Use category names as options
-          onSelect={handleCategorySelect} // Update selected category on selection
-          placeholder={selectedCategory || "Select a category"} // Display selected category or placeholder
+      <WidgetSection title="Shop By Price" className="pb-2.5">
+        <PriceRangeSlider
+          min={0}
+          max={200}
+          onChange={handleRangeChange}
+          currencyText="$"
+          width="100%"
         />
       </WidgetSection>
 
+      <WidgetSection title="Category">
+        <CustomDropdown
+          className="mt-3.5"
+          options={niche_categories.map((category) => category.name)}
+          onSelect={handleCategorySelect}
+          placeholder={selectedCategory || "Select a category"}
+        />
+      </WidgetSection>
+      
       {/* Brand Section */}
       <WidgetSection title="Brand">
         <div className="text-sm mt-1.5 space-y-0.5 divide-y transition-all duration-300">
@@ -64,25 +71,14 @@ const FilterWidget: React.FC = () => {
           ))}
         </div>
       </WidgetSection>
-
-      {/* Shop By Price Section */}
-      <WidgetSection title="Shop By Price" className="pb-2.5">
-        <PriceRangeSlider
-          min={0}
-          max={200}
-          onChange={handleRangeChange}
-          currencyText="$"
-          width="100%"
-        />
-      </WidgetSection>
-
+      
       {/* Popular Tags Section */}
       <WidgetSection title="Popular Tags">
-        <div className="mt-3.5 flex items-center flex-wrap gap-1.5 text-sm space-y-0.5 transition-all duration-300">
+        <div className="mt-3.5 flex items-center flex-wrap gap-1.5 space-y-0.5 transition-all duration-300">
           {popularTags.map((tag, i) => (
             <button
               key={i}
-              className="group/tag px-3.5 py-0.5 border hover:text-primary transition-all"
+              className="group/tag px-3.5 py-0.5 text-sm tracking-wider border hover:text-primary transition-all"
             >
               <span className="tracking-wider transition-all">{tag}</span>
             </button>

@@ -16,7 +16,7 @@ const PopularCategories: FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<string>("");
 
     // Query to fetch products for the selected category
-    const { data: products, isLoading: productLoading, isError: productError, error: productErrorMsg, refetch } = useQuery({
+    const { data: products = [], isLoading: productLoading, isError: productError, error: productErrorMsg, refetch } = useQuery({
         queryKey: ["popular-categories", selectedCategory],
         queryFn: () => fetchCategoryProducts(selectedCategory)
     });
@@ -48,15 +48,16 @@ const PopularCategories: FC = () => {
                     </button>
                 ))}
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
                 {productLoading ? (
-                    <div className="col-span-full text-center"><BarLoader className="mx-auto" /></div>
+                    <div className="col-span-full text-center">
+                        <BarLoader className="mx-auto" />
+                    </div>
                 ) : productError ? (
                     <div className="col-span-full text-center text-red-500">
                         {productErrorMsg instanceof Error ? productErrorMsg.message : 'Failed to fetch products for this category.'}
                     </div>
-                ) : products?.length > 0 ? (
+                ) : products.length > 0 ? (
                     products.map((product, i) => (
                         <Product key={i} product={product} />
                     ))
