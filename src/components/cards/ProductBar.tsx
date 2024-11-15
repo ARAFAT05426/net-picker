@@ -12,7 +12,7 @@ interface Props {
 
 const ProductBar: React.FC<Props> = ({ className = "", product }) => {
     const { name, description, rating = 0, image_url, price } = product;
-    console.log(rating)
+
     const renderStars = (rating: number) => {
         const stars = [];
         for (let i = 1; i <= 5; i++) {
@@ -28,35 +28,46 @@ const ProductBar: React.FC<Props> = ({ className = "", product }) => {
     };
 
     return (
-        <div className={`w-full flex px-0.5 py-2.5 border-b border-gray-200 ${className}`}>
+        <div className={`w-full flex flex-col sm:flex-row px-2 py-3 sm:px-3 sm:py-4 border-b border-gray-200 ${className}`}>
             {/* Product Image */}
-            <img src={image_url} alt={name} className="bg-[#EEEEEE] w-48 h-48 object-cover rounded-sm mr-3.5" />
+            <img 
+                src={image_url} 
+                alt={name} 
+                className="w-full sm:w-36 md:w-48 h-36 sm:h-48 object-cover rounded-sm mb-2 sm:mb-0 sm:mr-4 bg-[#EEEEEE]"
+            />
 
             {/* Product Details */}
             <div className="flex-1">
                 {/* Product Name */}
-                <h3 className="text-xl tracking-wider font-semibold text-gray-800">{name}</h3>
+                <h3 className="text-lg sm:text-xl font-semibold tracking-wide text-gray-800 mb-1">{name}</h3>
 
                 {/* Product Description */}
-                <p className="text-sm tracking-wide opacity-75">{description}</p>
+                <p className="text-sm sm:text-base text-gray-600 opacity-80 mb-2">{description}</p>
 
-                {/* Product Rating */}
-                <div className="flex items-center mt-1.5 mb-2">
-                    <span className="tracking-wider font-semibold mr-3.5">$ {price.toFixed(2)}</span>
+                {/* Product Rating and Price */}
+                <div className="flex items-center mb-2">
+                    <span className="text-lg sm:text-xl font-semibold mr-3">${price.toFixed(2)}</span>
                     {renderStars(rating)}
-                    <span className="ml-2.5 tracking-widest text-sm opacity-75">({rating})</span>
+                    <span className="ml-2 text-xs sm:text-sm text-gray-500 opacity-75">({rating})</span>
                 </div>
-                <div className="flex items-center gap-x-3.5 my-2.5">
-                    <LuHeart size={20} />
-                    <TbArrowsExchange2 size={20} />
+
+                {/* Action Buttons */}
+                <div className="flex items-center gap-3 text-gray-500 my-3">
+                    <button aria-label="Add to Wishlist">
+                        <LuHeart size={20} />
+                    </button>
+                    <button aria-label="Compare Product">
+                        <TbArrowsExchange2 size={20} />
+                    </button>
                 </div>
-                <div className="text-sm flex items-center gap-x-3.5">
-                    <span className="underline flex items-center font-bold tracking-wider">
-                        Quick View <FaArrowUp className="ml-1.5 rotate-45" />
-                    </span>
-                    <Link to={`/${name}`} className='tracking-widest font-bold underline flex items-center'>
-                        View Offer
-                        <FaArrowUp className="ml-1.5 rotate-45" />
+
+                {/* Quick View and View Offer Links */}
+                <div className="text-sm sm:text-base flex items-center gap-3 font-semibold">
+                    <button className="underline flex items-center text-primary">
+                        Quick View <FaArrowUp className="ml-1 rotate-45" />
+                    </button>
+                    <Link to={`/${name}`} className="underline flex items-center text-primary">
+                        View Offer <FaArrowUp className="ml-1 rotate-45" />
                     </Link>
                 </div>
             </div>

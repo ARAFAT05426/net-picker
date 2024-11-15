@@ -8,7 +8,7 @@ interface ProductsListProps {
 
 const ProductsList: FC<ProductsListProps> = ({ products = [] }) => (
   <div className="w-full">
-    <div className="px-1.5 py-3.5 flex flex-col gap-3.5">
+    <div className="py-3.5 flex flex-col gap-3.5">
       {(products?.length ?? 0) > 0 ? (
         products.map((product, i) => <ProductBar key={i} product={product} />)
       ) : (

@@ -7,27 +7,26 @@ interface OurFeaturesProps {
     description: string
 }
 
-const our_features: OurFeaturesProps[] = [
-    {
-        icon: FiSearch,
-        title: "Effortless Product Comparison",
-        description: "Quickly compare products across categories for informed decisions."
-    },
-    {
-        icon: FiCpu,
-        title: "Personalized AI Experience",
-        description: "AI-driven recommendations based on your preferences and behavior."
-    },
-    {
-        icon: FiShield,
-        title: "Enhanced Data Security Assurance",
-        description: "Robust security measures to protect your data and privacy."
-    },
-    {
-        icon: FiGlobe,
-        title: "Localized & Multilingual Support",
-        description: "Access content in your preferred language with automatic localization."
-    }
+const our_features: OurFeaturesProps[] = [{
+    icon: FiSearch,
+    title: "our_features.feature1.title",
+    description: "our_features.feature1.description"
+},
+{
+    icon: FiCpu,
+    title: "our_features.feature2.title",
+    description: "our_features.feature2.description"
+},
+{
+    icon: FiShield,
+    title: "our_features.feature3.title",
+    description: "our_features.feature3.description"
+},
+{
+    icon: FiGlobe,
+    title: "our_features.feature4.title",
+    description: "our_features.feature4.description"
+}
 ];
 
 export default our_features;

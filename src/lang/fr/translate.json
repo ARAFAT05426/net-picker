@@ -1,0 +1,187 @@
+{
+  "logo": {
+    "net": "Net",
+    "picker": "Choisir"
+  },
+  "header": {
+    "welcome": "Bienvenue",
+    "guest": "Invité",
+    "to_net_picker": "à Net Picker",
+    "english": "Anglais",
+    "french": "Français",
+    "login": "Se connecter"
+  },
+  "nav": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "collection": "Collection",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "all_departments": "Tous les départements",
+  "niche": {
+    "category": {
+      "consumer_electronics": "Électronique grand public",
+      "home_furniture_living": "Mobilier et décoration intérieure",
+      "beauty_wellness": "Beauté et bien-être",
+      "apparel_accessories": "Vêtements et accessoires",
+      "diy_tools_outdoors": "Outils et jardinage",
+      "children_products": "Produits pour enfants",
+      "automotive_motorcycle": "Automobile et moto",
+      "pet_care_supplies": "Soins et accessoires pour animaux",
+      "major_appliances": "Appareils électroménagers",
+      "digital_products": "Produits numériques",
+      "sports_fitness_kits": "Équipements de sport et de fitness",
+      "gift_cards_more": "Cartes-cadeaux et plus"
+    },
+    "subcategory": {
+      "smartphones": "Smartphones",
+      "computers": "Ordinateurs",
+      "tablets": "Tablettes",
+      "accessories": "Accessoires",
+      "appliances": "Appareils électroménagers",
+      "furniture": "Mobilier",
+      "home_decor": "Décoration intérieure",
+      "kitchenware": "Ustensiles de cuisine",
+      "skincare": "Soins de la peau",
+      "makeup": "Maquillage",
+      "health_products": "Produits de santé",
+      "wellness_devices": "Appareils de bien-être",
+      "clothing": "Vêtements",
+      "footwear": "Chaussures",
+      "jewelry": "Bijoux",
+      "tools": "Outils",
+      "garden_equipment": "Équipements de jardin",
+      "outdoor_furniture": "Mobilier d'extérieur",
+      "toys": "Jouets",
+      "baby_apparel": "Vêtements pour bébé",
+      "childcare_essentials": "Produits essentiels pour bébé",
+      "car_parts": "Pièces automobiles",
+      "motorcycle_gear": "Équipements de moto",
+      "vehicle_care": "Entretien de véhicules",
+      "pet_food": "Nourriture pour animaux",
+      "pet_accessories": "Accessoires pour animaux",
+      "animal_health": "Santé animale",
+      "refrigerators": "Réfrigérateurs",
+      "washers": "Lave-linge",
+      "dryers": "Sèche-linge",
+      "ovens": "Fours",
+      "dishwashers": "Lave-vaisselle",
+      "e_books": "Livres électroniques",
+      "e_commerce_training": "Formation en commerce électronique",
+      "web_development": "Développement web",
+      "marketing_courses": "Cours de marketing",
+      "exercise_gear": "Équipements d'exercice",
+      "sports_equipment": "Équipements de sport",
+      "outdoor_recreation": "Loisirs en plein air",
+      "gifts_for_moms": "Cadeaux pour mamans",
+      "baby_gifts": "Cadeaux pour bébé",
+      "general_gift_ideas": "Idées de cadeaux générales"
+    }
+  },
+  "banner": {
+    "seamless_comparison": {
+      "title": "Comparaison de produits sans couture",
+      "description": "Comparez facilement les prix et les caractéristiques des meilleures marques en temps réel. Trouvez les meilleures offres sur l'électronique, les appareils, la mode et bien plus encore !",
+      "buttonText": "Commencer la comparaison",
+      "link": "/comparison"
+    },
+    "ai_shopping": {
+      "title": "Shopping alimenté par l'IA",
+      "description": "Profitez d'une expérience d'achat personnalisée avec des recommandations d'IA, des mises à jour de prix en temps réel et des suggestions de produits sur mesure.",
+      "buttonText": "En savoir plus",
+      "link": "/ai-features"
+    },
+    "secure_platform": {
+      "title": "Plateforme sécurisée et transparente",
+      "description": "Achetez en toute confiance grâce à nos protocoles de sécurité avancés, notre conformité au RGPD et nos protections contre le scraping.",
+      "buttonText": "Découvrez la sécurité",
+      "link": "/security"
+    },
+    "affiliate_program": {
+      "title": "Revenus de marketing d'affiliation",
+      "description": "Explorez nos partenariats d'affiliation et découvrez comment Net Picker réunit les marques et les utilisateurs pour une expérience de shopping fluide.",
+      "buttonText": "Rejoindre le programme d'affiliation",
+      "link": "/affiliate"
+    },
+    "mobile_app": {
+      "title": "Bientôt disponible, application mobile",
+      "description": "Préparez-vous pour l'application mobile Net Picker, apportant la comparaison de produits et les offres directement sur votre smartphone.",
+      "buttonText": "Restez informé",
+      "link": "/mobile-app"
+    },
+    "multilingual_support": {
+      "title": "Multilingue et international",
+      "description": "Accédez à Net Picker dans plusieurs langues pour une expérience d'achat véritablement mondiale, adaptée à votre région.",
+      "buttonText": "Explorer la localisation",
+      "link": "/multilingual-support"
+    },
+    "blog_promotions": {
+      "title": "Blog informatif & Promotions",
+      "description": "Restez informé avec nos derniers guides, critiques de produits et offres promotionnelles des meilleures marques.",
+      "buttonText": "Lire notre blog",
+      "link": "/blog"
+    }
+  },
+  "our_features": {
+    "feature1": {
+      "title": "Comparaison de produits sans effort",
+      "description": "Comparez rapidement les produits dans différentes catégories pour prendre des décisions éclairées."
+    },
+    "feature2": {
+      "title": "Expérience personnalisée avec l'IA",
+      "description": "Recommandations alimentées par l'IA en fonction de vos préférences et comportements."
+    },
+    "feature3": {
+      "title": "Assurance de sécurité des données améliorée",
+      "description": "Des mesures de sécurité robustes pour protéger vos données et votre vie privée."
+    },
+    "feature4": {
+      "title": "Support localisé et multilingue",
+      "description": "Accédez au contenu dans votre langue préférée avec une localisation automatique."
+    }
+  },
+  "filter": {
+    "filter_options": "Options de filtre",
+    "shop_by_price": "Acheter par prix",
+    "category": "Catégorie",
+    "select_category": "Sélectionner une catégorie",
+    "brand": "Marque",
+    "popular_tags": "Tags populaires"
+  },
+  "productsSortOptions": {
+    "sortByBrand": "Trier par marque",
+    "showProducts": "Afficher les produits",
+    "gridView": "Vue en grille",
+    "listView": "Vue en liste",
+    "showing": "Afficher {{start}}-{{end}} sur {{total}} produits"
+  },
+  "footer": {
+    "about": {
+      "description": "Net Picker est votre plateforme de confiance pour la comparaison de produits, offrant des recommandations transparentes et améliorées par l'IA pour vous aider à faire les meilleurs choix d'achat."
+    },
+    "quick_links": {
+      "title": "Informations",
+      "about_us": "À propos de nous",
+      "blog": "Blog",
+      "contact": "Contact",
+      "privacy_policy": "Politique de confidentialité"
+    },
+    "contact_us": {
+      "title": "Contactez-nous",
+      "email": "Email",
+      "phone": "Téléphone",
+      "address": "Adresse"
+    },
+    "subscribe": {
+      "title": "Abonnez-vous à notre newsletter",
+      "description": "Recevez des mises à jour sur les dernières comparaisons de produits et promotions.",
+      "placeholder": "Votre email"
+    },
+    "bottom": {
+      "copy": "© 2023 Net Picker | Tous droits réservés",
+      "terms": "Conditions d'utilisation",
+      "subscription": "Abonnement"
+    }
+  }
+}

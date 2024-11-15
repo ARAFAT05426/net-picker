@@ -14,7 +14,7 @@ const ResetPassword: React.FC = () => {
     const navigate = useNavigate();
     const params = useParams();
 
-    const email = searchParam.get("email");
+    const email = searchParam.get("email") || '';
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

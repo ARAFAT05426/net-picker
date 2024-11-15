@@ -5,31 +5,30 @@ import Product from "../cards/Product";
 import BarLoader from "../common/BarLoader";
 import product_props from "../../types/product_props";
 import niche_categories from "../../statics/niche_categories";
-
-// Fetches products for the selected category
+import { useTranslation } from "react-i18next";
 const fetchCategoryProducts = async (category: string) => {
     const response = await axios_common.get<{ products: product_props[] }>(`/products?category/${category}?limit=8`);
     return response.data.products;
 };
 
 const PopularCategories: FC = () => {
+
+    const { t } = useTranslation()
+
     const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-    // Query to fetch products for the selected category
     const { data: products = [], isLoading: productLoading, isError: productError, error: productErrorMsg, refetch } = useQuery({
         queryKey: ["popular-categories", selectedCategory],
         queryFn: () => fetchCategoryProducts(selectedCategory)
     });
 
-    // Handles the category button click
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
     };
 
-    // Optional: Refetch products when selectedCategory changes
     useEffect(() => {
         if (selectedCategory) {
-            refetch(); // Trigger refetch manually if needed after setting the category
+            refetch();
         }
     }, [selectedCategory, refetch]);
 
@@ -40,11 +39,11 @@ const PopularCategories: FC = () => {
                 {niche_categories?.slice(0, 5).map((niche_categorie, i) => (
                     <button
                         key={i}
-                        onClick={() => handleCategoryClick(niche_categorie.name)}
+                        onClick={() => handleCategoryClick(t(niche_categorie.name))}
                         className={`relative uppercase text-sm tracking-widest font-semibold rounded transition-all
-                                ${selectedCategory === niche_categorie.name ? "underline" : ""}`}
+                                ${selectedCategory === t(niche_categorie.name) ? "underline" : ""}`}
                     >
-                        {niche_categorie.name}
+                        {t(niche_categorie.name)}
                     </button>
                 ))}
             </div>

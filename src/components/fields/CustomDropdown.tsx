@@ -108,7 +108,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
                             ref={index === 0 ? firstOptionRef : null}
                             data-option={option}
                             onClick={() => handleOptionSelect(option)}
-                            className="text-xs md:text-sm px-3 py-2 cursor-pointer hover:bg-gray-200 focus:bg-gray-300"
+                            className="text-xs md:text-sm tracking-widest px-3 py-2 cursor-pointer hover:bg-gray-200 focus:bg-gray-300"
                             tabIndex={0}
                             role="option"
                             aria-selected={selectedOption === option ? "true" : "false"}

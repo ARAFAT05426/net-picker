@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import ToggleBtn from "../btns/ToggleBtn";
 import CategoryBox from "./CategoryBox";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";  // Import useTranslation hook
 
 const NavHeader = () => {
     const [isOpen, setOpen] = useState(false);
+    const { t } = useTranslation();  // Initialize translation function
 
     return (
         <nav className="bg-secondary text-white">
@@ -27,7 +29,8 @@ const NavHeader = () => {
                                 hover:bg-primary transition-all duration-300`
                             }
                         >
-                            {navigation_link?.title}
+                            <navigation_link.icon className="mr-2.5 text-xl" />
+                            {t(navigation_link?.title)} {/* Translate the title */}
                         </NavLink>
                     ))}
                 </div>
@@ -49,7 +52,7 @@ const NavHeader = () => {
                                 hover:bg-primary transition-all duration-300`
                             }
                         >
-                            {navigation_link?.title}
+                            {t(navigation_link?.title)} {/* Translate the title */}
                         </NavLink>
                     ))}
                 </div>

@@ -6,8 +6,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import banner_sliders from "../../statics/banner_sliders";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+import { useTranslation } from "react-i18next";
 
 const Banner = () => {
+
+    const { t } = useTranslation()
+
     return (
         <div className="relative">
             <Swiper
@@ -37,16 +41,16 @@ const Banner = () => {
                             <div className="container">
                                 <div className="w-full max-w-2xl space-y-2.5">
                                     <span className="text-primary text-lg font-semibold">
-                                        {banner_slider?.title}
+                                        {t(banner_slider?.title)}
                                     </span>
                                     <h1 className="text-6xl tracking-wider font-semibold">
-                                        {banner_slider?.title}
+                                        {t(banner_slider?.title)}
                                     </h1>
                                     <p className="max-w-xl pb-3.5">
-                                        {banner_slider?.description}
+                                        {t(banner_slider?.description)}
                                     </p>
                                     <LinkBtn to={banner_slider?.link}>
-                                        {banner_slider?.buttonText}
+                                        {t(banner_slider?.buttonText)}
                                     </LinkBtn>
                                 </div>
                             </div>

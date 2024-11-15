@@ -1,10 +1,18 @@
-// import type { FC } from 'react';
-
 import { Link } from "react-router-dom";
-
-// interface LogoProps {}
+import { useTranslation } from "react-i18next";  // Import useTranslation
 
 const Logo = () => {
-    return (<Link to={"/"} className="text-2xl md:text-3xl font-bold">Net<span className="text-primary">P</span>icker<b className="text-primary">.</b></Link>);
-}
+    const { t } = useTranslation();  // Initialize the translation function
+
+    return (
+        <Link to={"/"} className="text-2xl md:text-3xl tracking-widest font-bold">
+            <span className="text-primary">
+                {t('logo.net')}
+            </span>
+            {t('logo.picker')}
+            <b className="text-primary">.</b>
+        </Link>
+    );
+};
+
 export default Logo;

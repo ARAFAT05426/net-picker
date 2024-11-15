@@ -1,0 +1,188 @@
+{
+  "logo": {
+    "net": "Net",
+    "picker": "Picker"
+  },
+  "header": {
+    "welcome": "Welcome",
+    "guest": "Guest",
+    "to_net_picker": "To Net Picker",
+    "english": "English",
+    "french": "French",
+    "arabic": "Arabic",
+    "login": "Login"
+  },
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "collection": "Collection",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "all_departments": "All Departments",
+  "niche": {
+    "category": {
+      "consumer_electronics": "Consumer Electronics",
+      "home_furniture_living": "Home, Furniture & Living",
+      "beauty_wellness": "Beauty & Wellness",
+      "apparel_accessories": "Apparel & Accessories",
+      "diy_tools_outdoors": "DIY, Tools & Outdoors",
+      "children_products": "Children's Products",
+      "automotive_motorcycle": "Automotive & Motorcycle",
+      "pet_care_supplies": "Pet Care & Supplies",
+      "major_appliances": "Major Appliances",
+      "digital_products": "Digital Products",
+      "sports_fitness_kits": "Sports & Fitness Kits",
+      "gift_cards_more": "Gift Cards & More"
+    },
+    "subcategory": {
+      "smartphones": "Smartphones",
+      "computers": "Computers",
+      "tablets": "Tablets",
+      "accessories": "Accessories",
+      "appliances": "Appliances",
+      "furniture": "Furniture",
+      "home_decor": "Home Decor",
+      "kitchenware": "Kitchenware",
+      "skincare": "Skincare",
+      "makeup": "Makeup",
+      "health_products": "Health Products",
+      "wellness_devices": "Wellness Devices",
+      "clothing": "Clothing",
+      "footwear": "Footwear",
+      "jewelry": "Jewelry",
+      "tools": "Tools",
+      "garden_equipment": "Garden Equipment",
+      "outdoor_furniture": "Outdoor Furniture",
+      "toys": "Toys",
+      "baby_apparel": "Baby Apparel",
+      "childcare_essentials": "Childcare Essentials",
+      "car_parts": "Car Parts",
+      "motorcycle_gear": "Motorcycle Gear",
+      "vehicle_care": "Vehicle Care",
+      "pet_food": "Pet Food",
+      "pet_accessories": "Pet Accessories",
+      "animal_health": "Animal Health",
+      "refrigerators": "Refrigerators",
+      "washers": "Washers",
+      "dryers": "Dryers",
+      "ovens": "Ovens",
+      "dishwashers": "Dishwashers",
+      "e_books": "E-books",
+      "e_commerce_training": "E-commerce Training",
+      "web_development": "Web Development",
+      "marketing_courses": "Marketing Courses",
+      "exercise_gear": "Exercise Gear",
+      "sports_equipment": "Sports Equipment",
+      "outdoor_recreation": "Outdoor Recreation",
+      "gifts_for_moms": "Gifts for Moms",
+      "baby_gifts": "Baby Gifts",
+      "general_gift_ideas": "General Gift Ideas"
+    }
+  },
+  "banner": {
+    "seamless_comparison": {
+      "title": "Seamless Product Comparison",
+      "description": "Easily compare prices and features across top brands in real time. Find the best deals on electronics, appliances, fashion, and more!",
+      "buttonText": "Start Comparing",
+      "link": "/comparison"
+    },
+    "ai_shopping": {
+      "title": "AI-Powered Shopping",
+      "description": "Enjoy a personalized shopping experience with AI recommendations, real-time price updates, and tailored product suggestions.",
+      "buttonText": "Learn More",
+      "link": "/ai-features"
+    },
+    "secure_platform": {
+      "title": "Secure and Transparent Platform",
+      "description": "Shop confidently with our advanced security protocols, GDPR compliance, and anti-scraping protections.",
+      "buttonText": "Discover Security",
+      "link": "/security"
+    },
+    "affiliate_program": {
+      "title": "Affiliate Marketing Revenue",
+      "description": "Explore our affiliate partnerships and see how Net Picker brings brands and users together for a seamless shopping journey.",
+      "buttonText": "Join Affiliate Program",
+      "link": "/affiliate"
+    },
+    "mobile_app": {
+      "title": "Coming Soon, Mobile App",
+      "description": "Get ready for the Net Picker mobile app, bringing product comparison and deals directly to your smartphone.",
+      "buttonText": "Stay Updated",
+      "link": "/mobile-app"
+    },
+    "multilingual_support": {
+      "title": "Multilingual and International",
+      "description": "Access Net Picker in multiple languages for a truly global shopping experience tailored to your region.",
+      "buttonText": "Explore Localization",
+      "link": "/multilingual-support"
+    },
+    "blog_promotions": {
+      "title": "Informative Blog & Promotions",
+      "description": "Stay informed with our latest guides, product reviews, and promotional offers from top brands.",
+      "buttonText": "Read Our Blog",
+      "link": "/blog"
+    }
+  },
+  "our_features": {
+    "feature1": {
+      "title": "Effortless Product Comparison",
+      "description": "Quickly compare products across categories for informed decisions."
+    },
+    "feature2": {
+      "title": "Personalized AI Experience",
+      "description": "AI-driven recommendations based on your preferences and behavior."
+    },
+    "feature3": {
+      "title": "Enhanced Data Security Assurance",
+      "description": "Robust security measures to protect your data and privacy."
+    },
+    "feature4": {
+      "title": "Localized & Multilingual Support",
+      "description": "Access content in your preferred language with automatic localization."
+    }
+  },
+  "filter": {
+    "filter_options": "Filter Options",
+    "shop_by_price": "Shop By Price",
+    "category": "Category",
+    "select_category": "Select a category",
+    "brand": "Brand",
+    "popular_tags": "Popular Tags"
+  },
+  "productsSortOptions": {
+    "sortByBrand": "Sort by brand",
+    "showProducts": "Show Products",
+    "gridView": "Grid view",
+    "listView": "List view",
+    "showing": "Show {{start}}-{{end}} of {{total}} Products"
+  },
+  "footer": {
+    "about": {
+      "description": "Net Picker is your trusted platform for product comparison, offering transparent, AI-enhanced recommendations to help you make the best shopping choices."
+    },
+    "quick_links": {
+      "title": "Information",
+      "about_us": "About Us",
+      "blog": "Blog",
+      "contact": "Contact",
+      "privacy_policy": "Privacy Policy"
+    },
+    "contact_us": {
+      "title": "Contact Us",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address"
+    },
+    "subscribe": {
+      "title": "Subscribe to Our Newsletter",
+      "description": "Get updates on the latest product comparisons and promotions.",
+      "placeholder": "Your Email"
+    },
+    "bottom": {
+      "copy": "© 2023 Net Picker | All Rights Reserved",
+      "terms": "Terms & Conditions",
+      "subscription": "Subscription"
+    }
+  }
+}

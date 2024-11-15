@@ -14,7 +14,7 @@ interface Props {
 
 const Product: FC<Props> = ({ className = "", product }) => {
     const { name, rating = 0, image_url, price } = product;
-    console.log(rating)
+
     // Function to render stars based on rating
     const renderStars = (rating: number) => {
         const stars = [];
@@ -31,56 +31,58 @@ const Product: FC<Props> = ({ className = "", product }) => {
     };
 
     return (
-        <div className={`${className} relative group p-3.5 flex flex-col border rounded-sm`} style={{ height: '100%' }}>
-            <div className="relative h-48 md:h-56 lg:h-60 overflow-hidden mb-2.5">
+        <div className={`${className} relative group p-3.5 md:p-4 lg:p-5 flex flex-col border rounded-sm`} style={{ height: '100%' }}>
+            <div className="relative h-48 md:h-52 lg:h-60 overflow-hidden mb-2.5">
                 {/* "hello" label with higher z-index */}
-                <div className="absolute top-2.5 left-2.5 bg-secondary text-white text-xs tracking-widest px-2.5 py-0.5 z-[1]">
+                <div className="absolute top-2 left-2 bg-secondary text-white text-xs sm:text-sm tracking-widest px-3 py-1 z-[1]">
                     hello
                 </div>
 
                 {/* Wrapper div for scaling image on hover */}
                 <div className="transition-transform duration-300 group-hover:scale-110">
                     <img
-                        className="min-h-full h-48 md:h-56 lg:h-60 w-full bg-[#EEEEEE] object-contain"
+                        className="min-h-full w-full bg-[#EEEEEE] object-contain"
                         src={image_url}
                         alt={name}
                     />
                 </div>
 
                 {/* Options buttons with staggered reveal */}
-                <div className="absolute inset-x-0 bottom-1 flex items-center justify-center gap-x-px opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="bg-white hover:text-white hover:bg-primary px-2.5 py-1.5 transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[50ms]">
-                        <LuHeart size={22} />
+                <div className="absolute inset-x-0 bottom-2 flex items-end justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="bg-white hover:bg-primary hover:text-white p-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[50ms]">
+                        <LuHeart className='' />
                     </button>
-                    <button className="bg-white hover:bg-primary hover:text-white flex items-center gap-x-1.5 px-2.5 py-1.5 transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-150">
-                        <GoPlus size={22} /> <span className="text-sm font-semibold tracking-wider">Quick View</span>
+                    <button className="bg-white hover:bg-primary hover:text-white flex items-center gap-1.5 p-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-150">
+                        <GoPlus className='' /> <span className="text-sm font-semibold tracking-widest">Quick View</span>
                     </button>
-                    <button className="bg-white hover:bg-primary hover:text-white px-2.5 py-1.5 transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[250ms]">
-                        <TbArrowsExchange2 size={22} />
+                    <button className="bg-white hover:bg-primary hover:text-white p-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[250ms]">
+                        <TbArrowsExchange2 className='' />
                     </button>
                 </div>
             </div>
 
             {/* Product name */}
-            <h1 className="sm:text-lg md:text-xl tracking-wider text-primary font-semibold mb-2">
+            <h1 className="text-md sm:text-lg md:text-xl tracking-wide text-primary font-semibold mb-2">
                 {name}
             </h1>
 
             {/* Star rating */}
-            <div className="flex items-center mb-1.5">
+            <div className="flex items-center mb-2">
                 {renderStars(rating)}
-                <span className="ml-2.5 text-xs text-gray-500">({rating})</span>
+                <span className="ml-2 text-xs text-gray-500">({rating})</span>
             </div>
 
             {/* Divider */}
-            <hr className="my-1" />
+            <hr className="my-2" />
 
             {/* Price and View Offer link */}
-            <div className="flex items-center justify-between tracking-widest font-semibold py-1 px-0.5">
-                <p className='flex items-center gap-x-1.5'><span className=''>From</span> ${price}</p>
-                <Link to={`/${name}`} className='flex items-center gap-x-1.5 underline tracking-widest font-semibold'>
+            <div className="flex items-center justify-between text-sm sm:text-base font-semibold py-2">
+                <p className="flex items-center gap-1.5">
+                    <span>From</span> ${price}
+                </p>
+                <Link to={`/${name}`} className="flex items-center gap-1.5 underline font-semibold">
                     View Offer
-                    <FaArrowUp className='rotate-45' />
+                    <FaArrowUp className="rotate-45" />
                 </Link>
             </div>
         </div>

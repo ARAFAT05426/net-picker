@@ -1,4 +1,5 @@
 import './index.css'
+import './utils/I18n';
 import { StrictMode } from 'react'
 import routes from './routes/Routes'
 import { createRoot } from 'react-dom/client'

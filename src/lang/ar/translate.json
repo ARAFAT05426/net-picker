@@ -1,0 +1,188 @@
+{
+  "logo": {
+    "net": "نت",
+    "picker": "بيكر"
+  },
+  "header": {
+    "welcome": "مرحباً",
+    "guest": "ضيف",
+    "to_net_picker": "إلى نت بيكر",
+    "english": "الإنجليزية",
+    "french": "الفرنسية",
+    "arabic": "العربية",
+    "login": "تسجيل الدخول"
+  },
+  "nav": {
+    "home": "الصفحة الرئيسية",
+    "shop": "المتجر",
+    "collection": "المجموعة",
+    "blog": "مدونة",
+    "contact": "اتصل بنا"
+  },
+  "all_departments": "جميع الأقسام",
+  "niche": {
+    "category": {
+      "consumer_electronics": "الإلكترونيات الاستهلاكية",
+      "home_furniture_living": "الأثاث والمفروشات والمعيشة",
+      "beauty_wellness": "الجمال والعافية",
+      "apparel_accessories": "الملابس والإكسسوارات",
+      "diy_tools_outdoors": "أدوات وديي وأدوات خارجية",
+      "children_products": "منتجات الأطفال",
+      "automotive_motorcycle": "السيارات والدراجات النارية",
+      "pet_care_supplies": "رعاية الحيوانات الأليفة والإمدادات",
+      "major_appliances": "الأجهزة الرئيسية",
+      "digital_products": "المنتجات الرقمية",
+      "sports_fitness_kits": "مجموعات الرياضة واللياقة البدنية",
+      "gift_cards_more": "بطاقات الهدايا والمزيد"
+    },
+    "subcategory": {
+      "smartphones": "الهواتف الذكية",
+      "computers": "أجهزة الكمبيوتر",
+      "tablets": "الأجهزة اللوحية",
+      "accessories": "الإكسسوارات",
+      "appliances": "الأجهزة المنزلية",
+      "furniture": "الأثاث",
+      "home_decor": "ديكور المنزل",
+      "kitchenware": "أدوات المطبخ",
+      "skincare": "العناية بالبشرة",
+      "makeup": "المكياج",
+      "health_products": "المنتجات الصحية",
+      "wellness_devices": "أجهزة العافية",
+      "clothing": "الملابس",
+      "footwear": "الأحذية",
+      "jewelry": "المجوهرات",
+      "tools": "الأدوات",
+      "garden_equipment": "معدات الحدائق",
+      "outdoor_furniture": "أثاث خارجي",
+      "toys": "الألعاب",
+      "baby_apparel": "ملابس الأطفال",
+      "childcare_essentials": "أساسيات رعاية الأطفال",
+      "car_parts": "أجزاء السيارات",
+      "motorcycle_gear": "معدات الدراجات النارية",
+      "vehicle_care": "رعاية المركبات",
+      "pet_food": "طعام الحيوانات الأليفة",
+      "pet_accessories": "إكسسوارات الحيوانات الأليفة",
+      "animal_health": "صحة الحيوانات",
+      "refrigerators": "الثلاجات",
+      "washers": "الغسالات",
+      "dryers": "المجففات",
+      "ovens": "الأفران",
+      "dishwashers": "غسالات الصحون",
+      "e_books": "الكتب الإلكترونية",
+      "e_commerce_training": "تدريب التجارة الإلكترونية",
+      "web_development": "تطوير الويب",
+      "marketing_courses": "دورات التسويق",
+      "exercise_gear": "معدات التمرين",
+      "sports_equipment": "معدات الرياضة",
+      "outdoor_recreation": "الترفيه في الهواء الطلق",
+      "gifts_for_moms": "هدايا للأمهات",
+      "baby_gifts": "هدايا للأطفال",
+      "general_gift_ideas": "أفكار هدايا عامة"
+    }
+  },
+  "banner": {
+    "seamless_comparison": {
+      "title": "مقارنة المنتجات بسلاسة",
+      "description": "قارن الأسعار والميزات بسهولة عبر العلامات التجارية الكبرى في الوقت الفعلي. اعثر على أفضل العروض على الإلكترونيات والأجهزة المنزلية والأزياء والمزيد!",
+      "buttonText": "ابدأ المقارنة",
+      "link": "/comparison"
+    },
+    "ai_shopping": {
+      "title": "تسوق مدعوم بالذكاء الاصطناعي",
+      "description": "استمتع بتجربة تسوق مخصصة مع توصيات الذكاء الاصطناعي وتحديثات الأسعار في الوقت الفعلي واقتراحات المنتجات الموجهة.",
+      "buttonText": "اعرف المزيد",
+      "link": "/ai-features"
+    },
+    "secure_platform": {
+      "title": "منصة آمنة وشفافة",
+      "description": "تسوق بثقة مع بروتوكولات الأمان المتقدمة، والتوافق مع اللائحة العامة لحماية البيانات، وحماية ضد الكشط.",
+      "buttonText": "اكتشف الأمان",
+      "link": "/security"
+    },
+    "affiliate_program": {
+      "title": "إيرادات التسويق بالعمولة",
+      "description": "استكشف شراكاتنا التابعة واطلع على كيفية جمع نت بيكر بين العلامات التجارية والمستخدمين لتجربة تسوق سلسة.",
+      "buttonText": "انضم إلى برنامج الشركاء",
+      "link": "/affiliate"
+    },
+    "mobile_app": {
+      "title": "قريبًا، تطبيق موبايل",
+      "description": "استعد لتطبيق نت بيكر الموبايل، الذي يقدم مقارنة المنتجات والعروض مباشرة إلى هاتفك الذكي.",
+      "buttonText": "ابق على اطلاع",
+      "link": "/mobile-app"
+    },
+    "multilingual_support": {
+      "title": "دعم متعدد اللغات ودولي",
+      "description": "الوصول إلى نت بيكر بعدة لغات لتجربة تسوق عالمية حقًا مخصصة لمنطقتك.",
+      "buttonText": "استكشف التوطين",
+      "link": "/multilingual-support"
+    },
+    "blog_promotions": {
+      "title": "مدونة ومُدونات ترويجية معلوماتية",
+      "description": "ابقَ على اطلاع مع أحدث الأدلة ومراجعات المنتجات والعروض الترويجية من العلامات التجارية الكبرى.",
+      "buttonText": "اقرأ مدونتنا",
+      "link": "/blog"
+    }
+  },
+  "our_features": {
+    "feature1": {
+      "title": "مقارنة المنتجات بسهولة",
+      "description": "قارن المنتجات عبر الفئات بسرعة لاتخاذ قرارات مستنيرة."
+    },
+    "feature2": {
+      "title": "تجربة مخصصة باستخدام الذكاء الصناعي",
+      "description": "توصيات مدفوعة بالذكاء الاصطناعي بناءً على تفضيلاتك وسلوكك."
+    },
+    "feature3": {
+      "title": "ضمان أمان البيانات المعزز",
+      "description": "تدابير أمان قوية لحماية بياناتك وخصوصيتك."
+    },
+    "feature4": {
+      "title": "دعم متعدد اللغات والمحلي",
+      "description": "الوصول إلى المحتوى بلغتك المفضلة مع التوطين التلقائي."
+    }
+  },
+  "filter": {
+    "filter_options": "خيارات الفلتر",
+    "shop_by_price": "تسوق حسب السعر",
+    "category": "الفئة",
+    "select_category": "اختر فئة",
+    "brand": "العلامة التجارية",
+    "popular_tags": "الوسوم الشائعة"
+  },
+  "productsSortOptions": {
+    "sortByBrand": "ترتيب حسب العلامة التجارية",
+    "showProducts": "عرض المنتجات",
+    "gridView": "عرض الشبكة",
+    "listView": "عرض القائمة",
+    "showing": "عرض {{start}}-{{end}} من {{total}} منتج"
+  },
+  "footer": {
+    "about": {
+      "description": "Net Picker هي منصتك الموثوقة للمقارنة بين المنتجات، حيث تقدم توصيات مدعومة بالذكاء الاصطناعي لمساعدتك في اتخاذ أفضل قرارات التسوق."
+    },
+    "quick_links": {
+      "title": "معلومات",
+      "about_us": "من نحن",
+      "blog": "مدونة",
+      "contact": "اتصل بنا",
+      "privacy_policy": "سياسة الخصوصية"
+    },
+    "contact_us": {
+      "title": "اتصل بنا",
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "address": "العنوان"
+    },
+    "subscribe": {
+      "title": "اشترك في نشرتنا الإخبارية",
+      "description": "احصل على آخر التحديثات حول مقارنات المنتجات والعروض الترويجية.",
+      "placeholder": "بريدك الإلكتروني"
+    },
+    "bottom": {
+      "copy": "© 2023 Net Picker | جميع الحقوق محفوظة",
+      "terms": "الشروط والأحكام",
+      "subscription": "الاشتراك"
+    }
+  }
+}

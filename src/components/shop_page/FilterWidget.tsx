@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { GoPlus } from "react-icons/go";
+import { GoPlus, GoDash } from "react-icons/go"; // GoDash for the toggle icon
 import PriceRangeSlider from "./PriceRangeSlider";
 import CustomDropdown from "../fields/CustomDropdown";
 import niche_categories from "../../statics/niche_categories";
+import { useTranslation } from "react-i18next";
 
 interface WidgetSectionProps {
   title: string;
@@ -12,18 +13,23 @@ interface WidgetSectionProps {
 
 const WidgetSection: React.FC<WidgetSectionProps> = ({ title = "", className = "", children }) => (
   <div className={`${className} group relative w-full`}>
-    <h2 className="w-fit relative uppercase text-xl tracking-widest font-semibold space-y-2.5">
+    <h2 className="w-fit relative uppercase text-lg sm:text-xl tracking-wider font-semibold pb-0.5 mb-2.5">
       {title}
-      <span className="absolute bottom-0 left-0 h-0.5 w-2/5 bg-primary" />
+      <span className="absolute bottom-0 left-0 h-0.5 w-2/5 bg-primary group-hover:w-3/4 transition-all duration-300" />
     </h2>
     {children}
   </div>
 );
 
 const FilterWidget: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isOpen, setIsOpen] = useState(false); // Toggle state
   const [rangeValues, setRangeValues] = useState({ min: 10, max: 100 });
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const { t } = useTranslation();
+
+  console.log(rangeValues);
+
   const handleRangeChange = (values: { min: number; max: number }) => {
     setRangeValues(values);
   };
@@ -35,56 +41,73 @@ const FilterWidget: React.FC = () => {
     setSelectedCategory(category);
   };
 
-  return (
-    <div className="max-w-full pr-5 space-y-5 border-r-none md:border-r mb-10 w-full sm:max-w-xs md:max-w-md lg:max-w-72 xl:max-w-80">
-      {/* Category Section with Custom Dropdown */}
-      <WidgetSection title="Shop By Price" className="pb-2.5">
-        <PriceRangeSlider
-          min={0}
-          max={200}
-          onChange={handleRangeChange}
-          currencyText="$"
-          width="100%"
-        />
-      </WidgetSection>
+  const toggleOpen = () => setIsOpen((prev) => !prev);
 
-      <WidgetSection title="Category">
-        <CustomDropdown
-          className="mt-3.5"
-          options={niche_categories.map((category) => category.name)}
-          onSelect={handleCategorySelect}
-          placeholder={selectedCategory || "Select a category"}
-        />
-      </WidgetSection>
-      
-      {/* Brand Section */}
-      <WidgetSection title="Brand">
-        <div className="text-sm mt-1.5 space-y-0.5 divide-y transition-all duration-300">
-          {brands.map((brand, i) => (
-            <div
-              key={i}
-              className="group/brand w-full flex items-center justify-between py-1.5 hover:text-primary transition-all"
-            >
-              <span className="tracking-wider transition-all">{brand}</span>
-              <GoPlus className="text-xs group-hover/brand:rotate-180 transition-all duration-300" />
-            </div>
-          ))}
-        </div>
-      </WidgetSection>
-      
-      {/* Popular Tags Section */}
-      <WidgetSection title="Popular Tags">
-        <div className="mt-3.5 flex items-center flex-wrap gap-1.5 space-y-0.5 transition-all duration-300">
-          {popularTags.map((tag, i) => (
-            <button
-              key={i}
-              className="group/tag px-3.5 py-0.5 text-sm tracking-wider border hover:text-primary transition-all"
-            >
-              <span className="tracking-wider transition-all">{tag}</span>
-            </button>
-          ))}
-        </div>
-      </WidgetSection>
+  return (
+    <div className="w-full max-w-full md:max-w-md lg:max-w-xs pr-0 md:pr-3.5 border-r-0 md:border-r mb-10">
+      {/* Toggle Button for Small Screens */}
+      <button
+        onClick={toggleOpen}
+        className="md:hidden flex items-center justify-between w-full px-3.5 py-1.5 mb-3.5 bg-gray-200 text-lg font-semibold transition-all duration-300"
+      >
+        {t("filter.filter_options")}
+        {isOpen ? <GoDash className="text-primary" /> : <GoPlus className="text-primary" />}
+      </button>
+
+      {/* Filter Content */}
+      <div
+        className={`${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+          } space-y-4 overflow-hidden md:opacity-100 md:max-h-full transition-all duration-500 ease-in-out`}
+      >
+        {/* Category Section with Custom Dropdown */}
+        <WidgetSection title={t("filter.shop_by_price")}>
+          <PriceRangeSlider
+            min={0}
+            max={200}
+            onChange={handleRangeChange}
+            currencyText="$"
+            width="100%"
+          />
+        </WidgetSection>
+
+        <WidgetSection title={t("filter.category")}>
+          <CustomDropdown
+            className=""
+            options={niche_categories.map((category) => t(category.name))}
+            onSelect={handleCategorySelect}
+            placeholder={selectedCategory || t("filter.select_category")}
+          />
+        </WidgetSection>
+
+        {/* Brand Section */}
+        <WidgetSection title={t("filter.brand")}>
+          <div className="text-sm space-y-1 transition-all duration-300">
+            {brands.map((brand, i) => (
+              <div
+                key={i}
+                className={`group/brand flex items-center justify-between py-0.5 hover:text-primary transition-all duration-300 ${i !== brands?.length - 1 ? "border-b" : ""}`}
+              >
+                <span className="tracking-wide">{brand}</span>
+                <GoPlus className="text-xs group-hover/brand:rotate-180 transition-transform duration-300" />
+              </div>
+            ))}
+          </div>
+        </WidgetSection>
+
+        {/* Popular Tags Section */}
+        <WidgetSection title={t("filter.popular_tags")}>
+          <div className="mt-2.5 flex flex-wrap gap-2">
+            {popularTags.map((tag, i) => (
+              <button
+                key={i}
+                className="group/tag px-3 py-1 text-sm tracking-wide border border-gray-300 rounded-sm hover:text-primary transition-colors duration-300"
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        </WidgetSection>
+      </div>
     </div>
   );
 };

@@ -1,28 +1,38 @@
-interface navigation_linksProps {
-    title: string,
-    href: string
+import { IconType } from "react-icons";
+import { FaHome, FaShoppingBag, FaBoxOpen, FaBlog, FaPhoneAlt } from "react-icons/fa";
+
+interface NavigationLinksProps {
+    title: string;
+    href: string;
+    icon: IconType;
 }
 
-const navigation_links: navigation_linksProps[] = [
+const navigation_links: NavigationLinksProps[] = [
     {
-        title: "Home",
-        href: "/"
+        title: "nav.home",
+        href: "/",
+        icon: FaHome,
     },
     {
-        title: "Shop",
-        href: "/shop"
+        title: "nav.shop",
+        href: "/shop",
+        icon: FaShoppingBag,
     },
     {
-        title: "Collection",
-        href: "/collection"
+        title: "nav.collection",
+        href: "/collection",
+        icon: FaBoxOpen,
     },
     {
-        title: "Blog",
-        href: "/blog"
+        title: "nav.blog",
+        href: "/blog",
+        icon: FaBlog,
     },
     {
-        title: "Contact",
-        href: "/contact"
-    },
-]
+        title: "nav.contact",
+        href: "/contact",
+        icon: FaPhoneAlt,
+    }
+];
+
 export default navigation_links;

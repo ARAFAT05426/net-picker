@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useState, useContext, FC, ReactNode, useEffect } from 'react';
 import axios_common from '../utils/axios_common';
 import user_props from '../types/user_props';
@@ -10,7 +11,7 @@ interface AuthenticationContextType {
     register: (name: string, email: string, password: string) => Promise<void>;
     logout: () => void;
     forgetPassword: (email: string) => Promise<void>;
-    resetPassword: (token: string, email: string, password: string) => Promise<void>; // Added resetPassword here
+    resetPassword: (token: string, email: string, password: string) => Promise<void>;
 }
 
 const AuthenticationContext = createContext<AuthenticationContextType | undefined>(undefined);
@@ -23,13 +24,15 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
     const [user, setUser] = useState<user_props | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+
     // Fetch user data (CSRF token, user data, etc.)
     const fetchUser = async () => {
         try {
             const response = await axios_common.get('/api/user');
-            setUser(response.data);
+            setUser(response.data);  // Assuming response.data has a user object
         } catch (err) {
             console.error('Error fetching user:', err);
+            setError('Failed to fetch user data');
         }
     };
 
@@ -44,9 +47,8 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
             await axios_common.get('/sanctum/csrf-cookie');  // CSRF Token
             const response = await axios_common.post('/login', { email, password });
             setUser(response.data.user);  // Update user after login
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            setError(err.response?.data?.message || 'Login failed');
+            setError(err?.response?.data?.message || 'Login failed');
         } finally {
             setIsLoading(false);
         }
@@ -58,12 +60,9 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
             setError(null);
             await axios_common.get('/sanctum/csrf-cookie');  // CSRF Token
             const response = await axios_common.post('/register', { name, email, password });
-            console.log(response)
             setUser(response.data.user);  // Update user after registration
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            console.log(err)
-            setError(err.response?.data?.message || 'Registration failed');
+            setError(err?.response?.data?.message || 'Registration failed');
         } finally {
             setIsLoading(false);
         }
@@ -73,8 +72,8 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
         try {
             await axios_common.post('/logout');
             setUser(null);  // Clear user state after logout
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
-            console.log(err);
             setError('Logout failed');
         }
     };
@@ -83,26 +82,31 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
         try {
             const response = await axios_common.post('/forgot-password', { email });
             console.log('Password reset link sent', response);
-        } catch (err) {
-            console.log(err);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (err: any) {
             setError('Failed to send reset link');
         }
     };
 
     const resetPassword = async (token: string, email: string, newPassword: string) => {
+        if (!email || !newPassword) {
+            setError('Email and password are required');
+            return;
+        }
+
         try {
             const response = await axios_common.post('/reset-password', {
                 token,
                 email,
-                password: newPassword
+                password: newPassword,
             });
             console.log('Password has been reset successfully', response.data);
         } catch (err) {
-            console.log('Error resetting password', err);
+            console.log(err)
             setError('Failed to reset password');
         }
     };
-    
+
     return (
         <AuthenticationContext.Provider value={{ user, error, isLoading, login, register, logout, forgetPassword, resetPassword }}>
             {children}

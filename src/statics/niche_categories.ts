@@ -1,56 +1,111 @@
-interface NicheCategoryProps {
+interface niche_category_props {
     name: string;
-    subcategories: string[];
+    subcategories?: string[];
 }
 
-const niche_categories: NicheCategoryProps[] = [
+const niche_categories: niche_category_props[] = [
     {
-        name: "Consumer Electronics",
-        subcategories: ["Smartphones", "Computers", "Tablets", "Accessories"]
+        name: "niche.category.consumer_electronics",  // Translation key for category name
+        subcategories: [
+            "niche.subcategory.smartphones",  // Translation key for subcategory
+            "niche.subcategory.computers",
+            "niche.subcategory.tablets",
+            "niche.subcategory.accessories"
+        ]
     },
     {
-        name: "Home ,Furniture & Living",
-        subcategories: ["Appliances", "Furniture", "Home Decor", "Kitchenware"]
+        name: "niche.category.home_furniture_living",
+        subcategories: [
+            "niche.subcategory.appliances",
+            "niche.subcategory.furniture",
+            "niche.subcategory.home_decor",
+            "niche.subcategory.kitchenware"
+        ]
     },
     {
-        name: "Beauty & Wellness",
-        subcategories: ["Skincare", "Makeup", "Health Products", "Wellness Devices"]
+        name: "niche.category.beauty_wellness",
+        subcategories: [
+            "niche.subcategory.skincare",
+            "niche.subcategory.makeup",
+            "niche.subcategory.health_products",
+            "niche.subcategory.wellness_devices"
+        ]
     },
     {
-        name: "Apparel & Accessories",
-        subcategories: ["Clothing", "Footwear", "Jewelry", "Accessories"]
+        name: "niche.category.apparel_accessories",
+        subcategories: [
+            "niche.subcategory.clothing",
+            "niche.subcategory.footwear",
+            "niche.subcategory.jewelry",
+            "niche.subcategory.accessories"
+        ]
     },
     {
-        name: "DIY ,Tool & Outdoors",
-        subcategories: ["Tools", "Garden Equipment", "Outdoor Furniture"]
+        name: "niche.category.diy_tools_outdoors",
+        subcategories: [
+            "niche.subcategory.tools",
+            "niche.subcategory.garden_equipment",
+            "niche.subcategory.outdoor_furniture"
+        ]
     },
     {
-        name: "Children's Products",
-        subcategories: ["Toys", "Baby Apparel", "Childcare Essentials"]
+        name: "niche.category.children_products",
+        subcategories: [
+            "niche.subcategory.toys",
+            "niche.subcategory.baby_apparel",
+            "niche.subcategory.childcare_essentials"
+        ]
     },
     {
-        name: "Automotive & Motorcycle",
-        subcategories: ["Car Parts", "Motorcycle Gear", "Vehicle Care"]
+        name: "niche.category.automotive_motorcycle",
+        subcategories: [
+            "niche.subcategory.car_parts",
+            "niche.subcategory.motorcycle_gear",
+            "niche.subcategory.vehicle_care"
+        ]
     },
     {
-        name: "Pet Care & Supplies",
-        subcategories: ["Pet Food", "Pet Accessories", "Animal Health"]
+        name: "niche.category.pet_care_supplies",
+        subcategories: [
+            "niche.subcategory.pet_food",
+            "niche.subcategory.pet_accessories",
+            "niche.subcategory.animal_health"
+        ]
     },
     {
-        name: "Major Appliances",
-        subcategories: ["Refrigerators", "Washers", "Dryers", "Ovens", "Dishwashers"]
+        name: "niche.category.major_appliances",
+        subcategories: [
+            "niche.subcategory.refrigerators",
+            "niche.subcategory.washers",
+            "niche.subcategory.dryers",
+            "niche.subcategory.ovens",
+            "niche.subcategory.dishwashers"
+        ]
     },
     {
-        name: "Digital Products",
-        subcategories: ["E-books", "E-commerce Training", "Web Development", "Marketing Courses"]
+        name: "niche.category.digital_products",
+        subcategories: [
+            "niche.subcategory.e_books",
+            "niche.subcategory.e_commerce_training",
+            "niche.subcategory.web_development",
+            "niche.subcategory.marketing_courses"
+        ]
     },
     {
-        name: "Sports & Fitness Kits",
-        subcategories: ["Exercise Gear", "Sports Equipment", "Outdoor Recreation"]
+        name: "niche.category.sports_fitness_kits",
+        subcategories: [
+            "niche.subcategory.exercise_gear",
+            "niche.subcategory.sports_equipment",
+            "niche.subcategory.outdoor_recreation"
+        ]
     },
     {
-        name: "Gift Cards & More",
-        subcategories: ["Gifts for Moms", "Baby Gifts", "General Gift Ideas"]
+        name: "niche.category.gift_cards_more",
+        subcategories: [
+            "niche.subcategory.gifts_for_moms",
+            "niche.subcategory.baby_gifts",
+            "niche.subcategory.general_gift_ideas"
+        ]
     }
 ];
 
