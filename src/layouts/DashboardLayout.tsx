@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import SidebarItem from "../components/sidebar/SidebarItem";
-import sidebar_links from "../statics/sidebar_links";
 import Sidebar from "../components/sidebar/SideBar";
+import sidebar_links from "../statics/sidebar_links";
+import SidebarItem from "../components/sidebar/SidebarItem";
 
 const DashboardLayout = () => {
     return (
@@ -21,7 +21,7 @@ const DashboardLayout = () => {
                     </>
                 )}
             </Sidebar>
-            <div className="flex-1 ml-16 md:ml-64 transition-all duration-500">
+            <div className="flex-1 mx-2.5 ml-16 md:ml-[19rem] mt-3.5 transition-all duration-500">
                 <Outlet />
             </div>
         </div>

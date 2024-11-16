@@ -31,3 +31,11 @@
 .swiper-wrapper {
   transition-timing-function: linear !important;
 }
+
+.ql-editor h1{
+  font-size: 1.75em;
+}
+
+.ql-editor h2{
+  font-size: 1.25em;
+}

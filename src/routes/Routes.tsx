@@ -6,6 +6,7 @@ import AppLayout from "../layouts/AppLayout";
 import ResetPassword from "../pages/ResetPassword";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Shop from "../pages/Shop";
+import CreateBlog from "../pages/CreateBlog";
 
 // Pages with Lazy Loading
 const Home = lazy(() => import("../pages/Home"));
@@ -60,6 +61,14 @@ const routes = createBrowserRouter([
     {
         path: "/dashboard",
         element: <DashboardLayout />,
+        children: [
+            {
+                path: 'create-blog',
+                element: (<Suspense fallback={<Loading />}>
+                    <CreateBlog />
+                </Suspense>)
+            }
+        ]
     },
     {
         path: "signup",

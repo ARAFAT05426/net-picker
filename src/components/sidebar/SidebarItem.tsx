@@ -13,17 +13,18 @@ const SidebarItem: FC<SidebarItemProps> = ({ icon: Icon, text, expanded, path })
     return (
         <li className="relative">
             <NavLink
+                end
                 to={path}
                 className={({ isActive }) =>
-                    `relative flex items-center py-3 ${expanded ? "px-3.5": "px-2.5"} my-1 rounded cursor-pointer transition-all group ${isActive
-                        ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800 font-semibold"
-                        : "hover:bg-indigo-50 text-gray-600"
+                    `relative flex items-center py-3 ${expanded ? "px-3.5" : "px-2.5"} my-1 rounded cursor-pointer transition-all group ${isActive
+                        ? "bg-gradient-to-tr from-primary/50 to-primary/25 text-black font-bold"
+                        : "hover:bg-primary/10 text-black"
                     }`
                 }
             >
                 <Icon size={22.5} />
                 <span
-                    className={`overflow-hidden text-sm tracking-widest transition-all duration-300 ${expanded ? "w-56 ml-2.5" : "w-0"
+                    className={`overflow-hidden text-sm tracking-[0.25em] transition-all duration-300 ${expanded ? "w-56 ml-2.5" : "w-0"
                         }`}
                 >
                     {text}
