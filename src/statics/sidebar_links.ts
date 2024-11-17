@@ -1,4 +1,5 @@
 import { MdOutlineDashboard, MdOutlineLocalOffer } from 'react-icons/md';
+import { LiaClipboardListSolid } from "react-icons/lia";
 import { TbReportAnalytics } from "react-icons/tb";
 import { FaUsersLine } from "react-icons/fa6";
 import { FaUsersCog } from 'react-icons/fa';
@@ -17,6 +18,9 @@ const sidebar_links: sidebar_linksProps[] = [
     },
     {
         label: "Create Blogs", icon: TfiWrite, path: "/dashboard/create-blog"
+    },
+    {
+        label: "Mannage Blogs", icon: LiaClipboardListSolid, path: "/dashboard/mannage-blog"
     },
     {
         label: "Promotions", icon: MdOutlineLocalOffer, path: "/admin/content/promotions"

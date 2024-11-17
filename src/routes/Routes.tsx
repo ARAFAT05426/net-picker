@@ -7,6 +7,8 @@ import ResetPassword from "../pages/ResetPassword";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Shop from "../pages/Shop";
 import CreateBlog from "../pages/CreateBlog";
+import MannageBlogs from "../pages/MannageBlogs";
+import UpdateBlog from "../pages/UpdateBlog";
 
 // Pages with Lazy Loading
 const Home = lazy(() => import("../pages/Home"));
@@ -49,6 +51,14 @@ const routes = createBrowserRouter([
                 ),
             },
             {
+                path: "/blog/:id",
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <Blog />
+                    </Suspense>
+                ),
+            },
+            {
                 path: "/contact",
                 element: (
                     <Suspense fallback={<Loading />}>
@@ -67,7 +77,19 @@ const routes = createBrowserRouter([
                 element: (<Suspense fallback={<Loading />}>
                     <CreateBlog />
                 </Suspense>)
-            }
+            },
+            {
+                path: 'mannage-blog',
+                element: (<Suspense fallback={<Loading />}>
+                    <MannageBlogs />
+                </Suspense>)
+            },
+            {
+                path: 'update-blog/:id',
+                element: (<Suspense fallback={<Loading />}>
+                    <UpdateBlog />
+                </Suspense>)
+            },
         ]
     },
     {

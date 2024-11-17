@@ -24,7 +24,7 @@ const SidebarItem: FC<SidebarItemProps> = ({ icon: Icon, text, expanded, path })
             >
                 <Icon size={22.5} />
                 <span
-                    className={`overflow-hidden text-sm tracking-[0.25em] transition-all duration-300 ${expanded ? "w-56 ml-2.5" : "w-0"
+                    className={`overflow-hidden tracking-[0.25em] transition-all duration-300 ${expanded ? "w-56 ml-2.5 text-sm" : "text-[0px] w-0"
                         }`}
                 >
                     {text}

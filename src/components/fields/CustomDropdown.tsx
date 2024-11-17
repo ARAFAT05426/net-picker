@@ -4,22 +4,28 @@ import { useState, useRef, useEffect } from "react";
 
 interface CustomDropdownProps {
     options: string[];
-    onSelect: (selectedOption: string | null) => void; // Allow null selection for deselect
+    onSelect: (selectedOption: string | null) => void;
     placeholder?: string;
     className?: string;
+    selected?: string | null; // Allow null explicitly
 }
 
 const CustomDropdown: React.FC<CustomDropdownProps> = ({
     options,
     onSelect,
     className = "",
-    placeholder = "Select an option"
+    placeholder = "Select an option",
+    selected,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [selectedOption, setSelectedOption] = useState<string | null>(selected || null);
     const dropdownRef = useRef<HTMLDivElement>(null);
-    const buttonRef = useRef<HTMLButtonElement>(null);
     const firstOptionRef = useRef<HTMLLIElement>(null);
+
+    // Update the selected option whenever the selected prop changes
+    useEffect(() => {
+        setSelectedOption(selected || null);  // Set to null if selected is undefined or null
+    }, [selected]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -77,7 +83,6 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
     return (
         <div className={`${className} relative w-full`} ref={dropdownRef}>
             <button
-                ref={buttonRef}
                 className="w-full px-3.5 py-2 border rounded-sm tracking-wider text-nowrap text-left flex justify-between items-center"
                 onClick={toggleDropdown}
                 onKeyDown={handleKeyDown}
@@ -100,7 +105,6 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
                 <ul
                     className="absolute w-full mt-1 bg-white border rounded-sm max-h-60 overflow-y-auto z-10"
                     role="listbox"
-                    aria-activedescendant={selectedOption ?? undefined}
                 >
                     {options.map((option, index) => (
                         <li

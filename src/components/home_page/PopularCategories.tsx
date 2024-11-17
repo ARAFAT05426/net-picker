@@ -7,7 +7,7 @@ import product_props from "../../types/product_props";
 import niche_categories from "../../statics/niche_categories";
 import { useTranslation } from "react-i18next";
 const fetchCategoryProducts = async (category: string) => {
-    const response = await axios_common.get<{ products: product_props[] }>(`/products?category/${category}?limit=8`);
+    const response = await axios_common.get<{ products: product_props[] }>(`/products?category=${category}&limit=8`);
     return response.data.products;
 };
 

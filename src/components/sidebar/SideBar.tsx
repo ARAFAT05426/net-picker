@@ -13,7 +13,7 @@ const Sidebar: FC<SidebarProps> = ({ children }) => {
     return (
         <aside
             className={`fixed top-0 left-0 transition-all duration-500 ${expanded ? "w-72" : "w-16"
-                } h-full bg-white border-r shadow-sm md:w-72 sm:w-16 xl:w-72 lg:w-72`}
+                } h-full bg-white border-r shadow-sm md:w-72 sm:w-16 xl:w-72 lg:w-72 z-50`}
         >
             <nav className="flex flex-col h-full">
                 <div className="p-4 flex justify-between items-center">

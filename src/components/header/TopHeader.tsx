@@ -58,7 +58,7 @@ const TopHeader = ({ isScrolled }: TopHeaderProps) => {
                     </div>
 
                     {/* Login Link */}
-                    <Link className="pl-1.5 flex items-center gap-x-1.5 hover:text-primary transition-all duration-300" to={'/sign_up'}>
+                    <Link className="pl-1.5 flex items-center gap-x-1.5 hover:text-primary transition-all duration-300" to={'/signup'}>
                         <FaUserAlt />
                         {t('header.login')}
                     </Link>
