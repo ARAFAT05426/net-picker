@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { GoArrowUpRight } from 'react-icons/go';
 import blog_props from '../../types/blog_props';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
     blog: blog_props;
@@ -9,7 +10,7 @@ interface Props {
     className?: string;
 }
 
-const Blog: FC<Props> = ({ blog, children, className }) => {
+const BlogCard: FC<Props> = ({ blog, children, className }) => {
     const formatDate = (date: Date = new Date()) => {
         return new Date(date).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -17,8 +18,12 @@ const Blog: FC<Props> = ({ blog, children, className }) => {
             day: 'numeric',
         });
     };
+
+    // Fallback to an empty string if blog.content is undefined
+    const content = blog.content || '';
+
     return (
-        <div className={`${className} group rounded-sm overflow-hidden bg-white transition-shadow duration-300`}>
+        <div className={`min-h-full ${className} group rounded-sm overflow-hidden bg-white transition-shadow duration-300`}>
             <div className="relative">
                 {/* Thumbnail */}
                 <img
@@ -40,23 +45,18 @@ const Blog: FC<Props> = ({ blog, children, className }) => {
                 </h2>
 
                 {/* Description */}
-                <div className='tracking-wider text-sm' dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 500) }} />
+                <div className='tracking-wider text-sm' dangerouslySetInnerHTML={{ __html: content.slice(0, 500) }} />
             </div>
             {
-                children ? children : <div className="px-1.5 pb-3">
-                    <button
+                children ? children :
+                    <Link to={`/blog/${blog.id}`}
                         className="flex items-center gap-x-1.5 text-primary text-sm font-semibold hover:underline"
-                        onClick={() => {
-                            // Replace with navigation logic to blog details
-                            window.location.href = `/blogs/${blog.id}`;
-                        }}
                     >
                         Read More <GoArrowUpRight />
-                    </button>
-                </div>
+                    </Link>
             }
         </div>
     );
 };
 
-export default Blog;
+export default BlogCard;

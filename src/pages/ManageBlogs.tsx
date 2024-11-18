@@ -3,7 +3,7 @@ import { MdOutlineEditCalendar } from 'react-icons/md';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import axios_common from '../utils/axios_common';
 import blog_props from '../types/blog_props';
-import Blog from '../components/cards/Blog';
+import Blog from '../components/cards/BlogCard';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 

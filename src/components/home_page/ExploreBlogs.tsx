@@ -1,21 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
-import Blog from "../cards/Blog";
+import Blog from "../cards/BlogCard";
 import axios_common from "../../utils/axios_common";
 import blog_props from "../../types/blog_props";
+import BarLoader from "../common/BarLoader";
 
 const ExploreBlogs = () => {
   // Fetch blogs
   const { data, isLoading, isError } = useQuery({
     queryKey: ["popular-blogs"],
-    queryFn: () => axios_common.get("/blogs").then((res) => res.data),
+    queryFn: async () => {
+      const response = await axios_common.get('/blogs?limit=3');
+      console.log(response.data)
+      return response.data.data;
+    },
   });
 
   if (isLoading) {
-    return <p>Loading blogs...</p>;
+    return (
+      <div className="min-h-80 flex items-center justify-center">
+        <BarLoader />
+      </div>
+    );
   }
 
   if (isError) {
-    return <p>Error fetching blogs. Please try again later.</p>;
+    return (
+      <div className="flex items-center justify-center py-10">
+        <p>Error fetching blogs. Please try again later.</p>
+      </div>
+    );
   }
 
   return (
@@ -25,7 +38,9 @@ const ExploreBlogs = () => {
           <Blog key={blog.id} blog={blog} />
         ))
       ) : (
-        <p>No blogs available at the moment.</p>
+        <p className="text-center col-span-full">
+          No blogs available at the moment.
+        </p>
       )}
     </section>
   );

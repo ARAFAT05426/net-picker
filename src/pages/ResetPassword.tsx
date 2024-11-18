@@ -1,16 +1,16 @@
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useProvider } from "../contexts/ContextProvider";
+import AuthField from "../components/fields/AuthField";
 import ActionBtn from "../components/btns/ActionBtn";
 import { GoChevronLeft } from "react-icons/go";
-import AuthField from "../components/fields/AuthField";
 import { useState } from "react";
-import { useAuth } from "../contexts/AuthenticationProvider";
 
 const ResetPassword: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [successMessage, setSuccessMessage] = useState<string>("");
     const [searchParam] = useSearchParams();
-    const { resetPassword } = useAuth();
+    const { resetPassword } = useProvider();
     const navigate = useNavigate();
     const params = useParams();
 

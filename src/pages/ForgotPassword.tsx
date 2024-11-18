@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+import { useProvider } from "../contexts/ContextProvider";
+import AuthField from "../components/fields/AuthField";
 import ActionBtn from "../components/btns/ActionBtn";
 import { GoChevronLeft } from "react-icons/go";
-import AuthField from "../components/fields/AuthField";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../contexts/AuthenticationProvider";
 
 const ForgotPassword: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>("");
-    const { forgetPassword } = useAuth();
+    const { forgetPassword } = useProvider();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

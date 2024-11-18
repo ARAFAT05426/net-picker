@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
-import ActionBtn from "../components/btns/ActionBtn";
-import { GoChevronLeft } from "react-icons/go";
-import AuthField from "../components/fields/AuthField";
 import * as React from "react";
-import { useAuth } from "../contexts/AuthenticationProvider";
+import { Link } from "react-router-dom";
+import { GoChevronLeft } from "react-icons/go";
+import ActionBtn from "../components/btns/ActionBtn";
+import AuthField from "../components/fields/AuthField";
+import { useProvider } from "../contexts/ContextProvider";
 
 const LogIn: React.FC = () => {
   const [keepLoggedIn, setKeepLoggedIn] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
-  const { login } = useAuth();
+  const { login } = useProvider();
 
   const handleLogIn = async (e: React.FormEvent) => {
     e.preventDefault();

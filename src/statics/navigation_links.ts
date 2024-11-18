@@ -25,7 +25,7 @@ const navigation_links: NavigationLinksProps[] = [
     },
     {
         title: "nav.blog",
-        href: "/blog",
+        href: "/blogs",
         icon: FaBlog,
     },
     {

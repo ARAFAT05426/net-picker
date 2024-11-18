@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
@@ -7,6 +8,8 @@ interface TextEditorProps {
 }
 
 const TextEditor: React.FC<TextEditorProps> = ({ value, onChange }) => {
+  const quillRef = useRef<ReactQuill | null>(null);
+
   const modules = {
     toolbar: [
       [{ 'header': '1' }, { 'header': '2' }],
@@ -25,6 +28,7 @@ const TextEditor: React.FC<TextEditorProps> = ({ value, onChange }) => {
 
   return (
     <ReactQuill
+      ref={quillRef}
       value={value}
       onChange={onChange}
       modules={modules}

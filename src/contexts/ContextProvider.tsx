@@ -3,7 +3,7 @@ import { createContext, useState, useContext, FC, ReactNode, useEffect } from 'r
 import axios_common from '../utils/axios_common';
 import user_props from '../types/user_props';
 
-interface AuthenticationContextType {
+interface ContextProviderType {
     user: user_props | null;
     error: string | null;
     isLoading: boolean;
@@ -14,13 +14,13 @@ interface AuthenticationContextType {
     resetPassword: (token: string, email: string, password: string) => Promise<void>;
 }
 
-const AuthenticationContext = createContext<AuthenticationContextType | undefined>(undefined);
+const AuthenticationContext = createContext<ContextProviderType | undefined>(undefined);
 
-interface AuthenticationProviderProps {
+interface ContextProviderProps {
     children: ReactNode;
 }
 
-const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) => {
+const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
     const [user, setUser] = useState<user_props | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
@@ -72,7 +72,7 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
         try {
             await axios_common.post('/logout');
             setUser(null);  // Clear user state after logout
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
             setError('Logout failed');
         }
@@ -82,7 +82,7 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
         try {
             const response = await axios_common.post('/forgot-password', { email });
             console.log('Password reset link sent', response);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err: any) {
             setError('Failed to send reset link');
         }
@@ -114,12 +114,12 @@ const AuthenticationProvider: FC<AuthenticationProviderProps> = ({ children }) =
     );
 };
 
-const useAuth = (): AuthenticationContextType => {
+const useProvider = (): ContextProviderType => {
     const context = useContext(AuthenticationContext);
     if (!context) {
-        throw new Error('useAuth must be used within an AuthenticationProvider');
+        throw new Error('useProvider must be used within an ContextProvider');
     }
     return context;
 };
 
-export { AuthenticationProvider, useAuth };
+export { ContextProvider, useProvider };

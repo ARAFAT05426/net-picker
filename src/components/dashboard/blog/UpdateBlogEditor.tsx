@@ -5,7 +5,6 @@ import ActionBtn from '../../btns/ActionBtn';
 import TextEditor from '../../fields/TextEditor';
 import CustomDropdown from '../../fields/CustomDropdown';
 import axios_common from '../../../utils/axios_common';
-import blog_props from '../../../types/blog_props';
 
 const UpdateBlogEditor = () => {
     const { id } = useParams<{ id: string }>();

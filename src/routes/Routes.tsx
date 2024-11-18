@@ -7,19 +7,22 @@ import ResetPassword from "../pages/ResetPassword";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Shop from "../pages/Shop";
 import CreateBlog from "../pages/CreateBlog";
-import MannageBlogs from "../pages/MannageBlogs";
+import ManageBlogs from "../pages/ManageBlogs";
 import UpdateBlog from "../pages/UpdateBlog";
+import Collection from "../pages/Collection";
+import BlogDetails from "../pages/BlogDetails";
+import Blogs from "../pages/Blogs";
+import BarLoader from "../components/common/BarLoader";
 
 // Pages with Lazy Loading
 const Home = lazy(() => import("../pages/Home"));
-const Blog = lazy(() => import("../pages/Blog"));
 const LogIn = lazy(() => import("../pages/LogIn"));
 const SignUp = lazy(() => import("../pages/SignUp"));
 const Contact = lazy(() => import("../pages/Contact"));
 const ForgotPassword = lazy(() => import("../pages/ForgotPassword"));
 
 // Fallback loading component
-const Loading = () => <div>Loading...</div>;
+const Loading = () => <div className="min-h-[75vh] flex items-center justify-center"><BarLoader /></div>;
 
 const routes = createBrowserRouter([
     {
@@ -43,10 +46,18 @@ const routes = createBrowserRouter([
                 ),
             },
             {
-                path: "/blog",
+                path: "/collection",
                 element: (
                     <Suspense fallback={<Loading />}>
-                        <Blog />
+                        <Collection />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/blogs",
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <Blogs />
                     </Suspense>
                 ),
             },
@@ -54,7 +65,7 @@ const routes = createBrowserRouter([
                 path: "/blog/:id",
                 element: (
                     <Suspense fallback={<Loading />}>
-                        <Blog />
+                        <BlogDetails />
                     </Suspense>
                 ),
             },
@@ -81,7 +92,7 @@ const routes = createBrowserRouter([
             {
                 path: 'mannage-blog',
                 element: (<Suspense fallback={<Loading />}>
-                    <MannageBlogs />
+                    <ManageBlogs />
                 </Suspense>)
             },
             {

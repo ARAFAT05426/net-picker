@@ -38,7 +38,7 @@ const BlogEditor = () => {
         formData.append("image", image);
 
         try {
-            const response = await axios_common.post("/blogs", formData, {
+            await axios_common.post("/blogs", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

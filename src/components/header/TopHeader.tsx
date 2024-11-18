@@ -43,15 +43,12 @@ const TopHeader = ({ isScrolled }: TopHeaderProps) => {
                             onChange={handleLanguageChange} // Trigger on language change
                         >
                             <option value="en">
-                                <img className="inline-block h-3 mr-2" src="/usa-flag.png" alt="English Flag" />
                                 {t('header.english')}
                             </option>
                             <option value="fr">
-                                <img className="inline-block h-3 mr-2" src="/france-flag.png" alt="French Flag" />
                                 {t('header.french')}
                             </option>
                             <option value="ar">
-                                <img className="inline-block h-3 mr-2" src="/morocco-flag.png" alt="Morocco Flag" />
                                 {t('header.arabic')}
                             </option>
                         </select>
