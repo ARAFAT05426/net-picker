@@ -1,17 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useState, useContext, FC, ReactNode, useEffect } from 'react';
 import axios_common from '../utils/axios_common';
 import user_props from '../types/user_props';
+import { toast } from 'sonner';
 
 interface ContextProviderType {
-    user: user_props | null;
-    error: string | null;
     isLoading: boolean;
+    logout: () => void;
+    error: string | null;
+    user: user_props | null;
+    forgetPassword: (email: string) => Promise<void>;
     login: (email: string, password: string) => Promise<void>;
     register: (name: string, email: string, password: string) => Promise<void>;
-    logout: () => void;
-    forgetPassword: (email: string) => Promise<void>;
     resetPassword: (token: string, email: string, password: string) => Promise<void>;
+
+    // Add Compare and Wishlist States
+    wishlist: any[];
+    compareList: any[];
+    isCompareModalOpen: boolean;
+    closeCompareModal: () => void;
+
+    addToCompare: (item: any) => void;
+    removeFromCompare: (item: any) => void;
+
+    addToWishlist: (item: any) => void;
+    removeFromWishlist: (item: any) => void;
 }
 
 const AuthenticationContext = createContext<ContextProviderType | undefined>(undefined);
@@ -21,9 +33,13 @@ interface ContextProviderProps {
 }
 
 const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
+
+    const [error, setError] = useState<string | null>(null);
     const [user, setUser] = useState<user_props | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
+    const [isCompareModalOpen, setIsCompareModalOpen] = useState<boolean>(false);
+    const [compareList, setCompareList] = useState<any[]>([]);
+    const [wishlist, setWishlist] = useState<any[]>([]);
 
     // Fetch user data (CSRF token, user data, etc.)
     const fetchUser = async () => {
@@ -40,6 +56,7 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
         fetchUser();
     }, []);
 
+    // Auth Functions
     const login = async (email: string, password: string) => {
         try {
             setIsLoading(true);
@@ -72,7 +89,6 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
         try {
             await axios_common.post('/logout');
             setUser(null);  // Clear user state after logout
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
             setError('Logout failed');
         }
@@ -82,7 +98,6 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
         try {
             const response = await axios_common.post('/forgot-password', { email });
             console.log('Password reset link sent', response);
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err: any) {
             setError('Failed to send reset link');
         }
@@ -102,13 +117,79 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
             });
             console.log('Password has been reset successfully', response.data);
         } catch (err) {
-            console.log(err)
+            console.log(err);
             setError('Failed to reset password');
         }
     };
 
+    // Compare List Functions
+    const openCompareModal = () => {
+        if (compareList.length > 1) {
+            setIsCompareModalOpen(true);
+        }
+    };
+
+    const closeCompareModal = () => {
+        setIsCompareModalOpen(false);
+    };
+
+    const addToCompare = (item: any) => {
+        const isItemAlreadyInCompare = compareList.some((i) => i.id === item.id);
+        if (isItemAlreadyInCompare) {
+            toast.error('This product is already in the comparison list.');
+            return;
+        }
+
+        setCompareList((prev) => {
+            const newCompareList = [...prev, item];
+            toast.success('Product added to comparison successfully.');
+
+            // Open the modal if there are at least two products after the update
+            if (newCompareList.length >= 2) {
+                setIsCompareModalOpen(true);
+            }
+
+            return newCompareList;
+        });
+    };
+
+    const removeFromCompare = (item: any) => {
+        setCompareList((prev) => {
+            const updatedList = prev.filter((i) => i.id !== item.id);
+            return updatedList;
+        });
+    };
+
+    // Wishlist Functions
+    const addToWishlist = (item: any) => {
+        setWishlist((prev) => [...prev, item]);
+    };
+
+    const removeFromWishlist = (item: any) => {
+        setWishlist((prev) => prev.filter((i) => i.id !== item.id));
+    };
+
     return (
-        <AuthenticationContext.Provider value={{ user, error, isLoading, login, register, logout, forgetPassword, resetPassword }}>
+        <AuthenticationContext.Provider
+            value={{
+                user,
+                error,
+                isLoading,
+                login,
+                register,
+                logout,
+                forgetPassword,
+                resetPassword,
+                wishlist,
+                compareList,
+                closeCompareModal,
+                isCompareModalOpen,
+                addToCompare,
+                addToWishlist,
+                removeFromCompare,
+                removeFromWishlist,
+            }}
+        >
             {children}
         </AuthenticationContext.Provider>
     );
@@ -117,7 +198,7 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
 const useProvider = (): ContextProviderType => {
     const context = useContext(AuthenticationContext);
     if (!context) {
-        throw new Error('useProvider must be used within an ContextProvider');
+        throw new Error('useProvider must be used within a ContextProvider');
     }
     return context;
 };

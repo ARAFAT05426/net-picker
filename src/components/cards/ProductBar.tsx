@@ -28,27 +28,37 @@ const ProductBar: React.FC<Props> = ({ className = "", product }) => {
     };
 
     return (
-        <div className={`w-full flex flex-col sm:flex-row px-2 py-3 sm:px-3 sm:py-4 border-b border-gray-200 ${className}`}>
+        <div
+            className={`w-full flex flex-row sm:items-center px-2 py-3 sm:px-3 sm:py-4 border-b border-gray-200 ${className}`}
+        >
             {/* Product Image */}
-            <img 
-                src={image_url} 
-                alt={name} 
-                className="w-full sm:w-36 md:w-48 h-36 sm:h-48 object-cover rounded-sm mb-2 sm:mb-0 sm:mr-4 bg-[#EEEEEE]"
+            <img
+                src={image_url}
+                alt={name}
+                className="w-24 h-36 sm:w-48 sm:h-48 object-cover rounded-sm mb-2 sm:mb-0 sm:mr-4 bg-[#EEEEEE]"
             />
 
             {/* Product Details */}
             <div className="flex-1">
                 {/* Product Name */}
-                <h3 className="text-lg sm:text-xl font-semibold tracking-wide text-gray-800 mb-1">{name}</h3>
+                <h3 className="text-lg sm:text-xl font-semibold tracking-wide text-gray-800 mb-1">
+                    {name}
+                </h3>
 
                 {/* Product Description */}
-                <p className="text-sm sm:text-base text-gray-600 opacity-80 mb-2">{description}</p>
+                <p className="text-sm sm:text-base text-gray-600 opacity-80 mb-2">
+                    {description}
+                </p>
 
                 {/* Product Rating and Price */}
                 <div className="flex items-center mb-2">
-                    <span className="text-lg sm:text-xl font-semibold mr-3">${price.toFixed(2)}</span>
+                    <span className="text-lg sm:text-xl font-semibold mr-3">
+                        ${price.toFixed(2)}
+                    </span>
                     {renderStars(rating)}
-                    <span className="ml-2 text-xs sm:text-sm text-gray-500 opacity-75">({rating})</span>
+                    <span className="ml-2 text-xs sm:text-sm text-gray-500 opacity-75">
+                        ({rating})
+                    </span>
                 </div>
 
                 {/* Action Buttons */}
@@ -66,7 +76,10 @@ const ProductBar: React.FC<Props> = ({ className = "", product }) => {
                     <button className="underline flex items-center text-primary">
                         Quick View <FaArrowUp className="ml-1 rotate-45" />
                     </button>
-                    <Link to={`/${name}`} className="underline flex items-center text-primary">
+                    <Link
+                        to={`/${name}`}
+                        className="underline flex items-center text-primary"
+                    >
                         View Offer <FaArrowUp className="ml-1 rotate-45" />
                     </Link>
                 </div>

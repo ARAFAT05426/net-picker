@@ -2,17 +2,19 @@ import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 // Layouts
-import AppLayout from "../layouts/AppLayout";
-import ResetPassword from "../pages/ResetPassword";
 import DashboardLayout from "../layouts/DashboardLayout";
-import Shop from "../pages/Shop";
-import CreateBlog from "../pages/CreateBlog";
-import ManageBlogs from "../pages/ManageBlogs";
-import UpdateBlog from "../pages/UpdateBlog";
-import Collection from "../pages/Collection";
-import BlogDetails from "../pages/BlogDetails";
-import Blogs from "../pages/Blogs";
 import BarLoader from "../components/common/BarLoader";
+import ResetPassword from "../pages/ResetPassword";
+import ManageBlogs from "../pages/ManageBlogs";
+import BlogDetails from "../pages/BlogDetails";
+import CreateBlog from "../pages/CreateBlog";
+import UpdateBlog from "../pages/UpdateBlog";
+import AppLayout from "../layouts/AppLayout";
+import AboutUs from "../pages/AboutUs";
+import Blogs from "../pages/Blogs";
+import Shop from "../pages/Shop";
+import Terms_Conditions from "../pages/Terms_Conditions";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
 
 // Pages with Lazy Loading
 const Home = lazy(() => import("../pages/Home"));
@@ -46,10 +48,10 @@ const routes = createBrowserRouter([
                 ),
             },
             {
-                path: "/collection",
+                path: "/about-us",
                 element: (
                     <Suspense fallback={<Loading />}>
-                        <Collection />
+                        <AboutUs />
                     </Suspense>
                 ),
             },
@@ -74,6 +76,22 @@ const routes = createBrowserRouter([
                 element: (
                     <Suspense fallback={<Loading />}>
                         <Contact />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/privacy-policy",
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <PrivacyPolicy />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/terms&conditions",
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <Terms_Conditions />
                     </Suspense>
                 ),
             },

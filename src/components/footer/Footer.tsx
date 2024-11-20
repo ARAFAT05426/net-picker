@@ -71,12 +71,10 @@ const Footer = () => {
 
       {/* Bottom Footer */}
       <div className="border-t border-t-[#303030] text-xs py-5">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0 px-5">
+        <div className="container flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0">
           <p>{t("footer.bottom.copy")}</p>
           <div className="flex items-center gap-2">
-            <Link to="/terms" className="hover:text-accent">{t("footer.bottom.terms")}</Link>
-            <span>|</span>
-            <Link to="/subscription" className="hover:text-accent">{t("footer.bottom.subscription")}</Link>
+            <Link to="/terms&conditions" className="hover:text-accent">{t("footer.bottom.terms")}</Link>
           </div>
         </div>
       </div>

@@ -1,18 +1,20 @@
 import { useState } from "react";
-import axios_common from "../utils/axios_common";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import product_props from "../types/product_props";
-import { useSearchParams } from "react-router-dom";
+import axios_common from "../utils/axios_common";
 import PageTitle from "../components/common/PageTitle";
 import BarLoader from "../components/common/BarLoader";
 import FilterWidget from "../components/shop_page/FilterWidget";
 import ProductsGrid from "../components/shop_page/ProductsGrid";
 import ProductsList from "../components/shop_page/ProductsList";
 import ProductsSortOptions from "../components/shop_page/ProductsSortOptions";
+import { RiEqualizerLine } from "react-icons/ri";
 
 const Shop = () => {
     const [isGridView, setIsGridView] = useState(true);
     const toggleView = () => setIsGridView((prev) => !prev);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const [searchParams] = useSearchParams();
     const searchTerm = searchParams.get("search") || "";
@@ -28,9 +30,16 @@ const Shop = () => {
 
     return (
         <>
-            <PageTitle title="Shop" />
+            <PageTitle title="Shop">
+                <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="flex md:hidden items-center gap-x-1 tracking-wider font-medium">
+                    Show Filters <RiEqualizerLine />
+                </button>
+            </PageTitle>
             <section className="container flex flex-col md:flex-row gap-x-2.5">
-                <FilterWidget />
+                <FilterWidget
+                    isSidebarOpen={isSidebarOpen}
+                    setIsSidebarOpen={setIsSidebarOpen}
+                />
                 <div className="w-full">
                     <ProductsSortOptions toggleView={toggleView} isGridView={isGridView} />
                     {isLoading ? (

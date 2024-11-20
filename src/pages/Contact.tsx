@@ -16,7 +16,7 @@ const Contact = () => {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="Google Map"
-          className="w-full min-h-80 mb-8 rounded-lg shadow-lg"
+          className="w-full min-h-80 mb-5"
         ></iframe>
 
         {/* Heading */}

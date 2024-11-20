@@ -24,7 +24,7 @@ const BlogCard: FC<Props> = ({ blog, children, className }) => {
 
     return (
         <div className={`min-h-full ${className} group rounded-sm overflow-hidden bg-white transition-shadow duration-300`}>
-            <div className="relative">
+            <div className="relative overflow-hidden">
                 {/* Thumbnail */}
                 <img
                     src={import.meta.env.VITE_API + blog.image_url}
@@ -50,7 +50,7 @@ const BlogCard: FC<Props> = ({ blog, children, className }) => {
             {
                 children ? children :
                     <Link to={`/blog/${blog.id}`}
-                        className="flex items-center gap-x-1.5 text-primary text-sm font-semibold hover:underline"
+                        className="pl-1.5 flex items-center gap-x-1.5 text-primary text-sm font-semibold hover:underline"
                     >
                         Read More <GoArrowUpRight />
                     </Link>

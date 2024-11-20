@@ -14,7 +14,7 @@ const DealsOfDay = () => {
         queryKey: ['deals_of_the_day'],
         queryFn: async () => {
             const response = await axios_common.get('/products');
-            return response.data.products; // return only products array
+            return response.data.data;
         }
     });
 

@@ -10,7 +10,6 @@ const ExploreBlogs = () => {
     queryKey: ["popular-blogs"],
     queryFn: async () => {
       const response = await axios_common.get('/blogs?limit=3');
-      console.log(response.data)
       return response.data.data;
     },
   });

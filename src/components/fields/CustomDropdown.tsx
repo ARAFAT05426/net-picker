@@ -3,127 +3,108 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useState, useRef, useEffect } from "react";
 
 interface CustomDropdownProps {
-    options: string[];
-    onSelect: (selectedOption: string | null) => void;
-    placeholder?: string;
-    className?: string;
-    selected?: string | null; // Allow null explicitly
+  options: string[];
+  onSelect: (selectedOption: string | null) => void;
+  placeholder?: string;
+  className?: string;
+  selected?: string | null; // Allow null explicitly
 }
 
 const CustomDropdown: React.FC<CustomDropdownProps> = ({
-    options,
-    onSelect,
-    className = "",
-    placeholder = "Select an option",
-    selected,
+  options,
+  onSelect,
+  className = "",
+  placeholder = "Select an option",
+  selected,
 }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<string | null>(selected || null);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const firstOptionRef = useRef<HTMLLIElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string | null>(
+    selected || null
+  );
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const firstOptionRef = useRef<HTMLLIElement>(null);
 
-    // Update the selected option whenever the selected prop changes
-    useEffect(() => {
-        setSelectedOption(selected || null);  // Set to null if selected is undefined or null
-    }, [selected]);
+  useEffect(() => {
+    setSelectedOption(selected || null);
+  }, [selected]);
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsOpen(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
-
-    useEffect(() => {
-        if (isOpen && firstOptionRef.current) {
-            firstOptionRef.current.focus(); // Focus the first option when the dropdown opens
-        }
-    }, [isOpen]);
-
-    const toggleDropdown = () => {
-        setIsOpen((prev) => !prev);
-    };
-
-    const handleOptionSelect = (option: string) => {
-        setSelectedOption(option);
-        onSelect(option); // Notify parent about selection
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
+      }
     };
-
-    const handleRemoveSelection = (event: React.MouseEvent) => {
-        event.stopPropagation(); // Prevent closing dropdown when deselecting
-        setSelectedOption(null);
-        onSelect(null); // Notify parent about deselection
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
     };
+  }, []);
 
-    const handleKeyDown = (event: React.KeyboardEvent) => {
-        if (event.key === "Enter" && isOpen) {
-            event.preventDefault();
-            const focusedOption = document.activeElement as HTMLElement;
-            if (focusedOption && focusedOption.dataset.option) {
-                handleOptionSelect(focusedOption.dataset.option);
-            }
-        }
-        if (event.key === "Escape") setIsOpen(false);
-        if (event.key === "ArrowDown" && isOpen) {
-            const nextOption = (document.activeElement?.nextElementSibling as HTMLElement) ?? dropdownRef.current?.firstElementChild;
-            nextOption?.focus();
-        }
-        if (event.key === "ArrowUp" && isOpen) {
-            const prevOption = (document.activeElement?.previousElementSibling as HTMLElement) ?? dropdownRef.current?.lastElementChild;
-            prevOption?.focus();
-        }
-    };
+  useEffect(() => {
+    if (isOpen && firstOptionRef.current) {
+      firstOptionRef.current.focus();
+    }
+  }, [isOpen]);
 
-    return (
-        <div className={`${className} relative w-full`} ref={dropdownRef}>
-            <button
-                className="w-full px-3.5 py-2 border rounded-sm tracking-wider text-nowrap text-left flex justify-between items-center"
-                onClick={toggleDropdown}
-                onKeyDown={handleKeyDown}
-                aria-haspopup="listbox"
-                aria-expanded={isOpen ? "true" : "false"}
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleOptionSelect = (option: string) => {
+    setSelectedOption(option);
+    onSelect(option);
+    setIsOpen(false);
+  };
+
+  const handleRemoveSelection = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setSelectedOption(null);
+    onSelect(null);
+  };
+
+  return (
+    <div className={`${className} relative w-full`} ref={dropdownRef}>
+      <button
+        className="w-full px-3 py-2 border rounded-sm tracking-wider text-left flex justify-between items-center sm:px-3.5 sm:py-2.5"
+        onClick={toggleDropdown}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen ? "true" : "false"}
+      >
+        <span className="text-xs sm:text-sm tracking-widest text-nowrap flex-1">{selectedOption || placeholder}</span>
+        {selectedOption ? (
+          <FaTimes
+            onClick={handleRemoveSelection}
+            className="ml-2 cursor-pointer text-gray-600"
+            aria-label="Deselect option"
+          />
+        ) : (
+          <IoIosArrowDown className="ml-2 text-gray-600" />
+        )}
+      </button>
+
+      {isOpen && (
+        <ul
+          className="absolute w-full mt-1 bg-white border rounded-sm max-h-48 overflow-y-auto z-20 shadow-lg text-sm sm:text-xs"
+          role="listbox"
+        >
+          {options.map((option, index) => (
+            <li
+              key={index}
+              ref={index === 0 ? firstOptionRef : null}
+              data-option={option}
+              onClick={() => handleOptionSelect(option)}
+              className="px-4 py-2 tracking-wider cursor-pointer hover:bg-gray-200 sm:px-3 sm:py-2"
+              tabIndex={0}
+              role="option"
+              aria-selected={selectedOption === option ? "true" : "false"}
             >
-                <span className="text-sm md:text-base flex-1">{selectedOption || placeholder}</span>
-                {selectedOption ? (
-                    <FaTimes
-                        onClick={handleRemoveSelection}
-                        className="ml-2 cursor-pointer text-gray-600"
-                        aria-label="Deselect option"
-                    />
-                ) : (
-                    <IoIosArrowDown className="ml-2 text-gray-600" />
-                )}
-            </button>
-
-            {isOpen && (
-                <ul
-                    className="absolute w-full mt-1 bg-white border rounded-sm max-h-60 overflow-y-auto z-10"
-                    role="listbox"
-                >
-                    {options.map((option, index) => (
-                        <li
-                            key={index}
-                            ref={index === 0 ? firstOptionRef : null}
-                            data-option={option}
-                            onClick={() => handleOptionSelect(option)}
-                            className="text-xs md:text-sm tracking-widest px-3 py-2 cursor-pointer hover:bg-gray-200 focus:bg-gray-300"
-                            tabIndex={0}
-                            role="option"
-                            aria-selected={selectedOption === option ? "true" : "false"}
-                        >
-                            {option}
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+              {option}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default CustomDropdown;

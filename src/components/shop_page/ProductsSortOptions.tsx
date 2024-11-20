@@ -30,33 +30,50 @@ const ProductsSortOptions: React.FC<Props> = ({ toggleView, isGridView }) => {
 
   return (
     <div className="w-full flex flex-col lg:flex-row items-start md:items-center justify-between pb-3 border-b">
-      <div className="w-full md:w-fit flex items-center flex-wrap md:flex-nowrap gap-3.5 mb-3 lg:mb-0">
-        <div className="flex items-center h-10 border">
-          {/* Toggle Buttons */}
-          <button
-            onClick={toggleView}
-            className={`h-full flex items-center justify-center p-2 ${isGridView ? "bg-primary text-white" : "bg-white text-gray-600"} transition duration-300 ease-in-out`}
-            aria-label={t("productsSortOptions.gridView")}
-          >
-            <MdOutlineDashboard />
-          </button>
-          <button
-            onClick={toggleView}
-            className={`h-full flex items-center justify-center p-2 ${!isGridView ? "bg-primary text-white" : "bg-white text-gray-600"} transition duration-300 ease-in-out`}
-            aria-label={t("productsSortOptions.listView")}
-          >
-            <TfiLayoutListThumb className="mt-0.5" />
-          </button>
+      {/* Left Section */}
+      <div className="w-full flex flex-col sm:flex-row items-start md:items-center gap-3 lg:gap-4 mb-3 lg:mb-0">
+        {/* Toggle Buttons */}
+        <div className="flex items-center justify-between w-full sm:w-auto">
+          <div className="flex items-center h-10 border rounded">
+            <button
+              onClick={toggleView}
+              className={`h-full flex items-center justify-center px-2.5 sm:px-4 ${isGridView ? "bg-primary text-white" : "bg-white text-gray-600"} transition duration-300 ease-in-out`}
+              aria-label={t("productsSortOptions.gridView")}
+            >
+              <MdOutlineDashboard />
+            </button>
+            <button
+              onClick={toggleView}
+              className={`h-full flex items-center justify-center px-2.5 sm:px-4 ${!isGridView ? "bg-primary text-white" : "bg-white text-gray-600"} transition duration-300 ease-in-out`}
+              aria-label={t("productsSortOptions.listView")}
+            >
+              <TfiLayoutListThumb />
+            </button>
+          </div>
+          <span className="block sm:hidden text-xs text-gray-600 mt-2">
+            {t("productsSortOptions.showing", { start: 1, end: 9, total: 36 })}
+          </span>
         </div>
 
         {/* Sort By Dropdown */}
-        <CustomDropdown options={sort_by} onSelect={handleSortBySelect} placeholder={t("productsSortOptions.sortByBrand")} />
+        <CustomDropdown
+          options={sort_by}
+          onSelect={handleSortBySelect}
+          placeholder={t("productsSortOptions.sortByBrand")}
+          className="w-full sm:w-auto"
+        />
 
         {/* Show Products Dropdown */}
-        <CustomDropdown options={show_products} onSelect={handleShowProductsSelect} placeholder={t("productsSortOptions.showProducts")} />
+        <CustomDropdown
+          options={show_products}
+          onSelect={handleShowProductsSelect}
+          placeholder={t("productsSortOptions.showProducts")}
+          className="w-full sm:w-auto"
+        />
       </div>
 
-      <span className="text-sm text-gray-600">
+      {/* Right Section (Showing Info) */}
+      <span className="hidden sm:block text-sm text-nowrap text-gray-600">
         {t("productsSortOptions.showing", { start: 1, end: 9, total: 36 })}
       </span>
     </div>

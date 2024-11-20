@@ -20,7 +20,7 @@ const navigation_links: NavigationLinksProps[] = [
     },
     {
         title: "nav.collection",
-        href: "/collection",
+        href: "/about-us",
         icon: FaBoxOpen,
     },
     {
