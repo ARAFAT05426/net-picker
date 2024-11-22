@@ -8,7 +8,7 @@ import niche_categories from "../../statics/niche_categories";
 import { useTranslation } from "react-i18next";
 const fetchCategoryProducts = async (category: string) => {
     const response = await axios_common.get<{ products: product_props[] }>(`/products?category=${category}&limit=8`);
-    return response.data.data;
+    return response.data;
 };
 
 const PopularCategories: FC = () => {
@@ -35,7 +35,7 @@ const PopularCategories: FC = () => {
     return (
         <section className="container py-14">
             <h2 className="text-2xl font-bold mb-5">Popular Categories</h2>
-            <div className="flex items-center gap-x-3.5 mb-5">
+            <div className="flex flex-wrap items-center gap-x-3.5 mb-5">
                 {niche_categories?.slice(0, 5).map((niche_categorie, i) => (
                     <button
                         key={i}
@@ -49,7 +49,7 @@ const PopularCategories: FC = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
                 {productLoading ? (
-                    <div className="col-span-full text-center">
+                    <div className="min-h-80 flex items-center justify-center col-span-full">
                         <BarLoader className="mx-auto" />
                     </div>
                 ) : productError ? (

@@ -49,11 +49,11 @@ const BlogCard: FC<Props> = ({ blog, children, className }) => {
             </div>
             {
                 children ? children :
-                    <Link to={`/blog/${blog.id}`}
-                        className="pl-1.5 flex items-center gap-x-1.5 text-primary text-sm font-semibold hover:underline"
-                    >
-                        Read More <GoArrowUpRight />
-                    </Link>
+                <Link to={`/blog/${blog.id}`}
+                    className="pl-1.5 flex items-center gap-x-1.5 text-primary text-sm font-semibold hover:underline"
+                >
+                    Read More <GoArrowUpRight />
+                </Link>
             }
         </div>
     );

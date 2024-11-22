@@ -4,14 +4,14 @@ declare module 'react-quill' {
   interface ReactQuillProps {
     value: string;
     onChange: (value: string) => void;
-    style?: CSSProperties;
-    placeholder:string;
+    style?: React.CSSProperties;
+    placeholder?: string;
     className?: string;
     formats?: string[];
-    modules?: unknown;
+    modules?: object;
     theme?: string;
   }
 
-  class ReactQuill extends Component<ReactQuillProps> {}
+  class ReactQuill extends Component<ReactQuillProps> { }
   export default ReactQuill;
 }

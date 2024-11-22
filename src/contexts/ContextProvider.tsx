@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useState, useContext, FC, ReactNode, useEffect } from 'react';
 import axios_common from '../utils/axios_common';
 import user_props from '../types/user_props';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 interface ContextProviderType {
     isLoading: boolean;
@@ -52,8 +54,23 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
         }
     };
 
+    // Fetch IP Address and check if the IP has visited today
+    const checkIpVisit = async () => {
+        try {
+            // Step 1: Fetch IP address
+            const ipResponse = await axios.get('https://api.ipify.org/?format=json');
+            const userIp = ipResponse.data.ip;
+
+            // Step 2: Send the IP address to the backend to log the visit
+            await axios_common.post('/log-visitor', { ip: userIp });
+        } catch (err) {
+            console.error('Error checking IP visit:', err);
+        }
+    };
+
     useEffect(() => {
         fetchUser();
+        checkIpVisit();  // Check IP visit on component mount
     }, []);
 
     // Auth Functions
@@ -63,7 +80,8 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
             setError(null);
             await axios_common.get('/sanctum/csrf-cookie');  // CSRF Token
             const response = await axios_common.post('/login', { email, password });
-            setUser(response.data.user);  // Update user after login
+            setUser(response.data.user);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             setError(err?.response?.data?.message || 'Login failed');
         } finally {
@@ -90,6 +108,7 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
             await axios_common.post('/logout');
             setUser(null);  // Clear user state after logout
         } catch (err) {
+            console.log(err)
             setError('Logout failed');
         }
     };
@@ -98,7 +117,8 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
         try {
             const response = await axios_common.post('/forgot-password', { email });
             console.log('Password reset link sent', response);
-        } catch (err: any) {
+        } catch (err) {
+            console.log(err)
             setError('Failed to send reset link');
         }
     };
@@ -123,6 +143,7 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
     };
 
     // Compare List Functions
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const openCompareModal = () => {
         if (compareList.length > 1) {
             setIsCompareModalOpen(true);

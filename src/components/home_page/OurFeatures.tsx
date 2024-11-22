@@ -17,7 +17,7 @@ const OurFeatures = () => {
                                 size={55}
                                 strokeWidth={0.75}
                             />
-                            <span className="absolute inset-y-1/2 right-0 h-8 w-14 rounded-sm opacity-0 bg-secondary/25 z-[1] group-hover:opacity-100 transition-all duration-500" />
+                            <span className="absolute inset-y-1/2 right-0 h-6 w-10 opacity-0 bg-secondary/25 z-[1] group-hover:opacity-100 transition-all duration-500" />
                         </div>
                         <h1 className="relative text-lg md:text-xl tracking-wide font-semibold group-hover:text-white transition-all duration-500 z-[1]">
                             {t(feature?.title)}

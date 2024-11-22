@@ -15,6 +15,8 @@ import Blogs from "../pages/Blogs";
 import Shop from "../pages/Shop";
 import Terms_Conditions from "../pages/Terms_Conditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import ProductDetails from "../pages/ProductDetails";
+import AdminPanel from "../pages/AdminPanel";
 
 // Pages with Lazy Loading
 const Home = lazy(() => import("../pages/Home"));
@@ -44,6 +46,14 @@ const routes = createBrowserRouter([
                 element: (
                     <Suspense fallback={<Loading />}>
                         <Shop />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/shop/:id",
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <ProductDetails />
                     </Suspense>
                 ),
             },
@@ -101,6 +111,12 @@ const routes = createBrowserRouter([
         path: "/dashboard",
         element: <DashboardLayout />,
         children: [
+            {
+                index: true,
+                element: <Suspense>
+                    <AdminPanel />
+                </Suspense>
+            },
             {
                 path: 'create-blog',
                 element: (<Suspense fallback={<Loading />}>

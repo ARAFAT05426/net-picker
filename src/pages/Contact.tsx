@@ -1,8 +1,41 @@
+import { FormEvent, useState } from "react";
 import ActionBtn from "../components/btns/ActionBtn";
 import PageTitle from "../components/common/PageTitle";
 import { CiLocationOn, CiMail, CiPhone } from "react-icons/ci";
+import axios_common from "../utils/axios_common";
+import { toast } from "sonner";
 
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleContact = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const name = formData.get("name")?.toString().trim();
+    const email = formData.get("email")?.toString().trim();
+    const subject = formData.get("subject")?.toString().trim();
+    const message = formData.get("message")?.toString().trim();
+
+    if (!name || !email || !subject || !message) {
+      toast.error("Please fill out all fields.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await axios_common.post("/contact", { name, email, subject, message });
+      toast.success("Message sent successfully!");
+      form.reset();
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <PageTitle title="Contact" />
@@ -20,38 +53,78 @@ const Contact = () => {
         ></iframe>
 
         {/* Heading */}
-        <h1 className="mt-3.5 mb-5 text-4xl tracking-wider font-medium">
-          Get In Touch
-        </h1>
+        <h1 className="mt-3.5 mb-5 text-4xl tracking-wider font-medium">Get In Touch</h1>
 
         {/* Form and Cards */}
         <div className="grid md:grid-cols-3 gap-8">
           {/* Form */}
-          <div className="md:col-span-2 grid grid-cols-2 gap-4">
-            <input
-              placeholder="Enter your name"
-              className="col-span-2 md:col-span-1 w-full pl-5 py-2.5 outline-none border rounded-sm"
-              type="text"
-            />
-            <input
-              placeholder="Enter your email"
-              className="col-span-2 md:col-span-1 w-full pl-5 py-2.5 outline-none border rounded-sm"
-              type="text"
-            />
-            <input
-              placeholder="Enter Subject"
-              className="col-span-2 w-full pl-5 py-2.5 outline-none border rounded-sm"
-              type="text"
-            />
-            <textarea
-              placeholder="Enter Message"
-              className="col-span-2 w-full pl-5 py-2.5 outline-none border rounded-sm"
-              rows={6}
-            ></textarea>
-            <div className="h-14">
-              <ActionBtn className="h-12 w-full">Send</ActionBtn>
+          <form
+            className="md:col-span-2 grid grid-cols-2 gap-4"
+            onSubmit={handleContact}
+          >
+            {/* Name */}
+            <div className="col-span-2 md:col-span-1 space-y-1.5">
+              <label htmlFor="name" className="block text-lg font-medium opacity-75">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                className="w-full pl-5 py-2.5 outline-none border rounded-sm"
+                type="text"
+              />
             </div>
-          </div>
+
+            {/* Email */}
+            <div className="col-span-2 md:col-span-1 space-y-1.5">
+              <label htmlFor="email" className="bloc text-lgm font-mediumopacity-75">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                className="w-full pl-5 py-2.5 outline-none border rounded-sm"
+                type="email"
+              />
+            </div>
+
+            {/* Subject */}
+            <div className="col-span-2 space-y-1.5">
+              <label htmlFor="subject" className="bl text-lg-sm font-mediopacity-75">
+                Subject
+              </label>
+              <input
+                id="subject"
+                name="subject"
+                placeholder="Enter subject"
+                className="w-full pl-5 py-2.5 outline-none border rounded-sm"
+                type="text"
+              />
+            </div>
+
+            {/* Message */}
+            <div className="col-span-2 space-y-1.5">
+              <label htmlFor="message" className="bl text-lg-sm font-mediopacity-75">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Enter your message"
+                className="w-full pl-5 py-2.5 outline-none border rounded-sm"
+                rows={6}
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <div className="h-14 col-span-2">
+              <ActionBtn className="h-12 w-full" type="submit" disabled={loading}>
+                {loading ? "Sending..." : "Send"}
+              </ActionBtn>
+            </div>
+          </form>
 
           {/* Cards */}
           <div className="space-y-5">

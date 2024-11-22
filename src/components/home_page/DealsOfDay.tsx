@@ -14,11 +14,13 @@ const DealsOfDay = () => {
         queryKey: ['deals_of_the_day'],
         queryFn: async () => {
             const response = await axios_common.get('/products');
-            return response.data.data;
+            return response.data;
         }
     });
 
-    if (isLoading) return <BarLoader className='mx-auto' />;
+    if (isLoading) return <div className='min-h-80 flex items-center justify-center'>
+        <BarLoader className='mx-auto' />
+    </div>;
     if (error) return <div>Error: {(error as Error).message}</div>;
 
     return (

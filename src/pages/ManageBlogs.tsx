@@ -7,6 +7,7 @@ import blog_props from '../types/blog_props';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import BlogCard from '../components/cards/BlogCard';
+import BarLoader from '../components/common/BarLoader';
 
 // Modal component for confirming deletion
 const ConfirmDeleteModal = ({
@@ -90,9 +91,8 @@ const ManageBlogs = () => {
 
   if (isLoading)
     return (
-      <div className="flex justify-center items-center">
-        <div className="spinner-border animate-spin border-4 border-blue-500 rounded-full w-8 h-8"></div>
-        <p className="ml-3">Loading...</p>
+      <div className="min-h-screen flex justify-center items-center">
+        <BarLoader />
       </div>
     );
 

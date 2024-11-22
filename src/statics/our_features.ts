@@ -1,6 +1,5 @@
-import { FiSearch, FiShield, FiGlobe, FiCpu } from "react-icons/fi";
+import { FiShield, FiGlobe, FiCpu, FiShuffle } from "react-icons/fi";
 import { IconType } from "react-icons";
-
 interface OurFeaturesProps {
     icon: IconType,
     title: string,
@@ -8,7 +7,7 @@ interface OurFeaturesProps {
 }
 
 const our_features: OurFeaturesProps[] = [{
-    icon: FiSearch,
+    icon: FiShuffle,
     title: "our_features.feature1.title",
     description: "our_features.feature1.description"
 },

@@ -1,12 +1,12 @@
-import axios_common from "../utils/axios_common";
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from "react-router-dom";
-import 'react-quill/dist/quill.snow.css';
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
-import { FaFacebookF } from "react-icons/fa6";
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from 'react-share';
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { useQuery } from "@tanstack/react-query";
+import axios_common from "../utils/axios_common";
+import { FaFacebookF } from "react-icons/fa6";
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import 'react-quill/dist/quill.snow.css';
 
 // Fetch blog details from API
 const fetchBlogDetails = async (id: string) => {
@@ -17,13 +17,11 @@ const fetchBlogDetails = async (id: string) => {
 const BlogDetails = () => {
     const { id } = useParams<{ id: string }>();
 
-    const { data, error, isLoading } = useQuery(
-        {
+    const { data, error, isLoading } = useQuery({
             queryKey: ['blog-details', id],
             queryFn: () => fetchBlogDetails(id!),
             enabled: Boolean(id), // Only fetch if id is available
-        }
-    );
+        });
 
     if (isLoading) {
         return <div className="text-center text-xl font-semibold">Loading...</div>;

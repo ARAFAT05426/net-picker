@@ -1,12 +1,12 @@
-import type { FC } from "react";
-import { Link } from "react-router-dom";
-import { LuHeart } from "react-icons/lu";
-import { TbArrowsExchange2 } from "react-icons/tb";
-import product_props from "../../types/product_props";
-import { GoPlus } from "react-icons/go";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { FaArrowUp } from "react-icons/fa6";
 import { useProvider } from "../../contexts/ContextProvider";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import product_props from "../../types/product_props";
+import { FaArrowUp } from "react-icons/fa6";
+import { LuHeart } from "react-icons/lu";
+import { VscLaw } from "react-icons/vsc";
+import { GoPlus } from "react-icons/go";
+import { Link } from "react-router-dom";
+import type { FC } from "react";
 
 interface Props {
   product: product_props;
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Product: FC<Props> = ({ className = "", product }) => {
-  const { name, rating = 0, image_url, price } = product;
+  const { id, name, rating = 0, image_url, price } = product;
   const { addToCompare } = useProvider();
 
   // Function to render stars based on rating
@@ -57,14 +57,14 @@ const Product: FC<Props> = ({ className = "", product }) => {
           <button className="bg-white hover:bg-primary hover:text-white p-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[50ms]">
             <LuHeart className="" />
           </button>
-          <button className="bg-white hover:bg-primary hover:text-white flex items-center gap-1.5 p-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-150">
+          <Link to={`/shop/${id}`} className="bg-white hover:bg-primary hover:text-white flex items-center gap-1.5 p-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-150">
             <GoPlus className="" />{" "}
             <span className="text-sm font-semibold tracking-widest">
               Quick View
             </span>
-          </button>
-          <button onClick={() =>addToCompare(product)} className="bg-white hover:bg-primary hover:text-white p-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[250ms]">
-            <TbArrowsExchange2 className="" />
+          </Link>
+          <button onClick={() => addToCompare(product)} className="bg-white hover:bg-primary hover:text-white p-2 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-[250ms]">
+            <VscLaw className="" />
           </button>
         </div>
       </div>

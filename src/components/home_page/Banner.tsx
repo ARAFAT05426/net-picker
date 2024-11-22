@@ -13,7 +13,7 @@ const Banner = () => {
     const { t } = useTranslation()
 
     return (
-        <div className="relative">
+        <div className="relative group">
             <Swiper
                 modules={[Autoplay, EffectFade, Navigation, Pagination]}
                 pagination={{
@@ -40,13 +40,13 @@ const Banner = () => {
                         >
                             <div className="container">
                                 <div className="w-full max-w-2xl space-y-2.5">
-                                    <span className="text-primary text-lg font-semibold">
+                                    <span className="text-primary text-sm md:text-base lg:text-lg font-semibold">
                                         {t(banner_slider?.title)}
                                     </span>
-                                    <h1 className="text-6xl tracking-wider font-semibold">
+                                    <h1 className="text-2xl md:text-4xl lg:text-6xl tracking-wider font-semibold">
                                         {t(banner_slider?.title)}
                                     </h1>
-                                    <p className="max-w-xl pb-3.5">
+                                    <p className="max-w-xl text-xs md:text-sm lg:text-base pb-3.5">
                                         {t(banner_slider?.description)}
                                     </p>
                                     <LinkBtn to={banner_slider?.link}>
@@ -58,10 +58,10 @@ const Banner = () => {
                     </SwiperSlide>
                 ))}
                 <div className="absolute inset-y-1/2 inset-x-0 flex items-center justify-between">
-                    <button className="swiper-button-prev px-3.5 py-2.5 bg-secondary text-white z-10 rounded-sm">
+                    <button className="swiper-button-prev px-2.5 py-1.5 bg-secondary text-white hover:bg-primary opacity-0 group-hover:opacity-100 rounded-sm z-10 transition-all duration-300">
                         <GoChevronLeft size={22.5} />
                     </button>
-                    <button className="swiper-button-next px-3.5 py-2.5 bg-secondary text-white z-10 rounded-sm">
+                    <button className="swiper-button-next px-2.5 py-1.5 bg-secondary text-white hover:bg-primary opacity-0 group-hover:opacity-100 rounded-sm z-10 transition-all duration-300">
                         <GoChevronRight size={22.5} />
                     </button>
                 </div>

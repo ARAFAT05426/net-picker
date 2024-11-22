@@ -77,7 +77,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className }) => {
 
             {/* Suggestion Dropdown */}
             {searchTerm && (
-                <div className="absolute left-0 right-0 bg-white mt-1 z-10 rounded-sm">
+                <div className="absolute inset-x-0 top-full bg-white mt-1 z-10 rounded-sm">
                     {isLoading ? (
                         <div className="min-h-24 flex items-center justify-center"><BarLoader /></div>
                     ) : suggestions?.length ? (
