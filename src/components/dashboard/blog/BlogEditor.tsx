@@ -1,12 +1,13 @@
-import CustomDropdown from "../../fields/CustomDropdown";
-import axios_common from '../../../utils/axios_common';
-import ActionBtn from '../../btns/ActionBtn';
 import { useState } from "react";
+import CustomDropdown from "../../fields/CustomDropdown";
+import axios_common from "../../../utils/axios_common";
+import ActionBtn from "../../btns/ActionBtn";
 import ImageUploader from "../../fields/ImageUploader";
 import TextEditor from "../../fields/TextEditor";
+import { toast } from "sonner";
 
 const BlogEditor = () => {
-    const [value, setValue] = useState<string>('');
+    const [value, setValue] = useState<string>("");
     const [image, setImage] = useState<File | null>(null);
     const [category, setCategory] = useState<string | null>(null);
 
@@ -27,30 +28,41 @@ const BlogEditor = () => {
         const blogTitle = titleInput?.value.trim();
 
         if (!blogTitle || !value || !image || !category) {
-            alert("Please fill out all fields, including an image and category.");
+            toast.error("Please fill out all fields, including an image and category.");
             return;
         }
 
-        const formData = new FormData();
-        formData.append("category", category);
-        formData.append("title", blogTitle);
-        formData.append("content", value);
-        formData.append("image", image);
-
         try {
-            await axios_common.post("/blogs", formData, {
+            // Step 1: Upload the image
+            const imageFormData = new FormData();
+            imageFormData.append("image", image);
+
+            const imageResponse = await axios_common.post("/upload-image", imageFormData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            alert("Blog added successfully!");
+
+            const imagePath = imageResponse.data.path; // Backend responds with the image path
+
+            // Step 2: Send blog data with the image path
+            const blogData = {
+                title: blogTitle,
+                category,
+                content: value,
+                image_path: imagePath,
+            };
+
+            await axios_common.post("/blogs", blogData);
+
+            toast.success("Blog added successfully!");
             titleInput.value = "";
             setValue("");
             setImage(null);
             setCategory(null);
         } catch (error) {
             console.error("Error uploading blog:", error);
-            alert("Failed to upload the blog. Please try again.");
+            toast.error("Failed to upload the blog. Please try again.");
         }
     };
 
@@ -79,6 +91,7 @@ const BlogEditor = () => {
                     placeholder="Select Blog Category"
                     className=""
                 />
+
                 {/* Text Editor */}
                 <TextEditor value={value} onChange={handleChange} />
 

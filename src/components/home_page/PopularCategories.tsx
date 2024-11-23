@@ -6,6 +6,7 @@ import BarLoader from "../common/BarLoader";
 import product_props from "../../types/product_props";
 import niche_categories from "../../statics/niche_categories";
 import { useTranslation } from "react-i18next";
+
 const fetchCategoryProducts = async (category: string) => {
     const response = await axios_common.get<{ products: product_props[] }>(`/products?category=${category}&limit=8`);
     return response.data;
@@ -13,13 +14,15 @@ const fetchCategoryProducts = async (category: string) => {
 
 const PopularCategories: FC = () => {
 
-    const { t } = useTranslation()
+    const { t } = useTranslation();
 
     const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-    const { data: products = [], isLoading: productLoading, isError: productError, error: productErrorMsg, refetch } = useQuery({
+    // Explicitly typing the data
+    const { data, isLoading: productLoading, isError: productError, error: productErrorMsg, refetch } = useQuery<{ products: product_props[] }>({
         queryKey: ["popular-categories", selectedCategory],
-        queryFn: () => fetchCategoryProducts(selectedCategory)
+        queryFn: () => fetchCategoryProducts(selectedCategory),
+        initialData: { products: [] } // Set default empty array
     });
 
     const handleCategoryClick = (category: string) => {
@@ -56,8 +59,8 @@ const PopularCategories: FC = () => {
                     <div className="col-span-full text-center text-red-500">
                         {productErrorMsg instanceof Error ? productErrorMsg.message : 'Failed to fetch products for this category.'}
                     </div>
-                ) : products.length > 0 ? (
-                    products.map((product, i) => (
+                ) : data?.products?.length > 0 ? (
+                    data.products.map((product, i) => (
                         <Product key={i} product={product} />
                     ))
                 ) : (

@@ -17,6 +17,7 @@ import Terms_Conditions from "../pages/Terms_Conditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import ProductDetails from "../pages/ProductDetails";
 import AdminPanel from "../pages/AdminPanel";
+import Promotions from "../pages/Promotions";
 
 // Pages with Lazy Loading
 const Home = lazy(() => import("../pages/Home"));
@@ -133,6 +134,12 @@ const routes = createBrowserRouter([
                 path: 'update-blog/:id',
                 element: (<Suspense fallback={<Loading />}>
                     <UpdateBlog />
+                </Suspense>)
+            },
+            {
+                path: 'promotions',
+                element: (<Suspense fallback={<Loading />}>
+                    <Promotions />
                 </Suspense>)
             },
         ]

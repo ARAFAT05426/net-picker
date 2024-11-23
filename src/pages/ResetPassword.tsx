@@ -4,6 +4,7 @@ import AuthField from "../components/fields/AuthField";
 import ActionBtn from "../components/btns/ActionBtn";
 import { GoChevronLeft } from "react-icons/go";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const ResetPassword: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -28,6 +29,7 @@ const ResetPassword: React.FC = () => {
         if (password !== confirmPassword) {
             setErrorMessage("Passwords do not match.");
             setLoading(false);
+            toast.error("Passwords do not match."); // Show toast on error
             return;
         }
 
@@ -36,17 +38,20 @@ const ResetPassword: React.FC = () => {
             if (!token) {
                 setErrorMessage("Invalid or expired token.");
                 setLoading(false);
+                toast.error("Invalid or expired token."); // Show toast on error
                 return;
             }
 
             // Make the resetPassword request
             await resetPassword(token, email, password);
             setSuccessMessage("Your password has been successfully reset. You can now log in.");
+            toast.success("Password reset successful!"); // Show toast on success
             setTimeout(() => {
                 navigate("/login");
             }, 3000);
         } catch (error) {
             setErrorMessage("There was an issue resetting your password. Please try again.");
+            toast.error("There was an issue resetting your password."); // Show toast on error
             console.error(error);
         } finally {
             setLoading(false);

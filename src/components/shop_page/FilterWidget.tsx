@@ -15,6 +15,7 @@ interface FilterWidgetProps {
 
 const FilterWidget: FC<FilterWidgetProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const [rangeValues, setRangeValues] = useState({ min: 10, max: 100 });
+  console.log(rangeValues)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const { t } = useTranslation();

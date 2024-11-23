@@ -1,11 +1,8 @@
-import { MdOutlineDashboard, MdOutlineLocalOffer } from 'react-icons/md';
+import { MdOutlineDashboard } from 'react-icons/md';
 import { LiaClipboardListSolid } from "react-icons/lia";
-import { TbReportAnalytics } from "react-icons/tb";
-import { FaUsersLine } from "react-icons/fa6";
-import { FaUsersCog } from 'react-icons/fa';
-import { FiSettings } from 'react-icons/fi';
 import { TfiWrite } from 'react-icons/tfi';
 import { IconType } from 'react-icons';
+import { BsTags } from 'react-icons/bs';
 interface sidebar_linksProps {
     label: string;
     icon: IconType;
@@ -23,19 +20,7 @@ const sidebar_links: sidebar_linksProps[] = [
         label: "Mannage Blogs", icon: LiaClipboardListSolid, path: "/dashboard/mannage-blog"
     },
     {
-        label: "Promotions", icon: MdOutlineLocalOffer, path: "/admin/content/promotions"
-    },
-    {
-        label: "Users", icon: FaUsersLine, path: "/admin/users"
-    },
-    {
-        label: "Roles", icon: FaUsersCog, path: "/admin/users/roles-permissions"
-    },
-    {
-        label: "Reports", icon: TbReportAnalytics, path: "/admin/users/roles-permissions"
-    },
-    {
-        label: "Settings", icon: FiSettings, path: "/admin/users/roles-permissions"
+        label: "Promotions", icon: BsTags, path: "/dashboard/promotions"
     }
 ];
 

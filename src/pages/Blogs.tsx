@@ -6,6 +6,7 @@ import BlogCard from "../components/cards/BlogCard";
 import { useState } from "react";
 import BarLoader from "../components/common/BarLoader";
 import PaginationButton from "../components/btns/PaginationButton";
+import blog_props from "../types/blog_props";
 
 const Blogs = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +41,7 @@ const Blogs = () => {
                     {error && <p className="col-span-2 text-red-500">Failed to load blogs: {error.message}</p>}
                     {blogs?.data && blogs.data.length > 0 ? (
                         <div className="grid grid-cols-2 gap-3.5">
-                            {blogs.data.map((blog: any) => (
+                            {blogs.data.map((blog: blog_props) => (
                                 <BlogCard key={blog.id} blog={blog} />
                             ))}
                         </div>

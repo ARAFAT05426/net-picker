@@ -26,9 +26,10 @@ const Contact = () => {
 
     try {
       setLoading(true);
-      const response = await axios_common.post("/contact", { name, email, subject, message });
+      await axios_common.post("/contact", { name, email, subject, message });
       toast.success("Message sent successfully!");
       form.reset();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error("Failed to send message. Please try again.");
     } finally {

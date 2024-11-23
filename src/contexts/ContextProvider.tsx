@@ -95,6 +95,7 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
             setError(null);
             await axios_common.get('/sanctum/csrf-cookie');  // CSRF Token
             const response = await axios_common.post('/register', { name, email, password });
+            console.log(response)
             setUser(response.data.user);  // Update user after registration
         } catch (err: any) {
             setError(err?.response?.data?.message || 'Registration failed');
@@ -144,12 +145,6 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
 
     // Compare List Functions
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const openCompareModal = () => {
-        if (compareList.length > 1) {
-            setIsCompareModalOpen(true);
-        }
-    };
-
     const closeCompareModal = () => {
         setIsCompareModalOpen(false);
     };

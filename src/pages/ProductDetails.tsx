@@ -8,6 +8,13 @@ import { VscLaw } from "react-icons/vsc";
 import { useState } from "react";
 import { MdOutlineCategory } from "react-icons/md";
 
+// Define the type for affiliate
+interface Affiliate {
+  id: number;
+  price: number;
+  link: string;
+}
+
 const ProductDetails = () => {
   const { id } = useParams();
   const [showFullDescription, setShowFullDescription] = useState(false);
@@ -40,14 +47,14 @@ const ProductDetails = () => {
   const isDescriptionLong = data?.description?.length > 250;
 
   // Placeholder for affiliate links
-  const affiliates = data?.affiliates || [
+  const affiliates: Affiliate[] = data?.affiliates || [
     { id: 1, price: 15.99, link: "https://example.com/affiliate1" },
     { id: 2, price: 18.49, link: "https://example.com/affiliate2" },
     { id: 3, price: 16.75, link: "https://example.com/affiliate3" },
   ];
 
   // Find the lowest-priced affiliate
-  const lowestAffiliate = affiliates.reduce((prev, curr) =>
+  const lowestAffiliate = affiliates.reduce((prev: Affiliate, curr: Affiliate) =>
     curr.price < prev.price ? curr : prev
   );
 

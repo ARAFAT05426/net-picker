@@ -21,7 +21,7 @@ const DashboardLayout = () => {
                     </>
                 )}
             </Sidebar>
-            <div className="flex-1 mx-2.5 ml-16 md:ml-[19rem] mt-3.5 transition-all duration-500">
+            <div className="w-screen flex-1 mx-2.5 ml-16 md:ml-[19rem] mt-3.5 transition-all duration-500">
                 <Outlet />
             </div>
         </div>

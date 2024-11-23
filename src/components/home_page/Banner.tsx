@@ -1,16 +1,36 @@
+import { useQuery } from "@tanstack/react-query";
 import "swiper/css";
 import "swiper/css/pagination";
-import 'swiper/css/effect-fade';
+import "swiper/css/effect-fade";
 import LinkBtn from "../btns/LinkBtn";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
-import banner_sliders from "../../statics/banner_sliders";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { useTranslation } from "react-i18next";
+import axios_common from "../../utils/axios_common";
+import banner_props from "../../types/banner_props";
+import BarLoader from "../common/BarLoader";
 
 const Banner = () => {
+    const { t } = useTranslation();
 
-    const { t } = useTranslation()
+    // Use TanStack Query to fetch the banners data
+    const { data: banners, isLoading, isError, error } = useQuery<banner_props[]>({
+        queryKey: ["banners"], queryFn: async () => {
+            const { data } = await axios_common.get(`/banners`)
+            return data
+        }
+    });
+
+    // Handle loading state
+    if (isLoading) {
+        return <div className="min-h-screen flex items-center justify-center"><BarLoader /></div>;
+    }
+
+    // Handle error state
+    if (isError) {
+        return <div>Error: {error.message}</div>;
+    }
 
     return (
         <div className="relative group">
@@ -25,33 +45,31 @@ const Banner = () => {
                 }}
                 navigation={{
                     enabled: true,
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev'
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
                 }}
                 className="mySwiper"
                 effect="fade"
                 loop={true}
             >
-                {banner_sliders?.map((banner_slider, i) => (
+                {banners?.map((banner, i) => (
                     <SwiperSlide key={i}>
                         <div
                             className="relative h-[calc(100vh-160px)] w-full flex items-center bg-cover bg-center"
-                            style={{ backgroundImage: `url('${banner_slider?.image}')` }}
+                            style={{ backgroundImage: `url('${banner.image}')` }}
                         >
                             <div className="container">
                                 <div className="w-full max-w-2xl space-y-2.5">
                                     <span className="text-primary text-sm md:text-base lg:text-lg font-semibold">
-                                        {t(banner_slider?.title)}
+                                        {t(banner.title)}
                                     </span>
                                     <h1 className="text-2xl md:text-4xl lg:text-6xl tracking-wider font-semibold">
-                                        {t(banner_slider?.title)}
+                                        {t(banner.title)}
                                     </h1>
                                     <p className="max-w-xl text-xs md:text-sm lg:text-base pb-3.5">
-                                        {t(banner_slider?.description)}
+                                        {t(banner.description)}
                                     </p>
-                                    <LinkBtn to={banner_slider?.link}>
-                                        {t(banner_slider?.buttonText)}
-                                    </LinkBtn>
+                                    <LinkBtn to={banner.link}>{t(banner.button_text)}</LinkBtn>
                                 </div>
                             </div>
                         </div>
